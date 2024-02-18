@@ -95,3 +95,20 @@ main {
     background-color: #1E1E1E;
     width: 100%;
 }
+
+main header {
+    height: 50px;
+    border-bottom: solid 1px white;
+}
+
+header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+header h1 {
+    color: white;
+    font-family: 'caveat brush';
+    text-align: center;
+}
