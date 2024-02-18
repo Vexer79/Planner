@@ -149,7 +149,7 @@ header h1 {
         flex-direction: row;
         height: 60px;
         width: 100%;
-        position: absolute;
+        position: fixed;
         bottom: 0;
     }
 
