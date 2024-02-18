@@ -1,1 +1,57 @@
 @import url(reset-style.css);
+
+.menu-icon {
+    display: block;
+    z-index: 5;
+    position: relative;
+    width: 30px;
+    height: 20px;
+    cursor: pointer;
+}
+
+.menu-icon span,
+.menu-icon::before,
+.menu-icon::after {
+    left: 0;
+    position: absolute;
+    height: 15%;
+    width: 100%;
+    transition: all 0.3s ease 0s;
+    background-color: white;
+}
+
+.menu-icon> {
+    background-color: white;
+}
+
+.menu-icon::before,
+.menu-icon::after {
+    content: "";
+}
+
+.menu-icon::before {
+    top: 0;
+}
+
+.menu-icon::after {
+    bottom: 0;
+}
+
+.menu-icon span {
+    top: 50%;
+    transform: scale(1) translate(0px, -50%);
+}
+
+.menu-icon._active span {
+    transform: scale(0) translate(0px, -50%);
+}
+
+.menu-icon._active::before {
+    top: 50%;
+    transform: rotate(-45deg) translate(0px, -50%);
+}
+
+.menu-icon._active::after {
+    bottom: 50%;
+    transform: rotate(45deg) translate(0px, 50%);
+}
