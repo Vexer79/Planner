@@ -34,11 +34,6 @@ ul li > a{
     padding: 15px 0;
 }
 
-main{
-    background-color: #1E1E1E;
-    width: 100%;
-}
-
 .menu-icon {
     display: block;
     z-index: 5;
@@ -93,4 +88,9 @@ main{
 .menu-icon._active::after {
     bottom: 50%;
     transform: rotate(45deg) translate(0px, 50%);
+}
+
+main{
+    background-color: #1E1E1E;
+    width: 100%;
 }
