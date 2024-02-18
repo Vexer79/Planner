@@ -105,6 +105,7 @@ header {
     display: flex;
     justify-content: center;
     align-items: center;
+    padding-right: 60px;
 }
 
 header h1 {
@@ -112,4 +113,5 @@ header h1 {
     font-family: 'caveat brush';
     text-align: center;
     font-size: 2em;
+    width: 120px;
 }
