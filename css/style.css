@@ -145,4 +145,8 @@ header h1 {
     ul li a {
         width: 1em;
     }
+
+    header{
+        padding: 0;
+    }
 }
