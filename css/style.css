@@ -99,7 +99,6 @@ main {
 
 main header {
     height: 50px;
-    border-bottom: solid 1px white;
 }
 
 header {
@@ -135,6 +134,7 @@ header h1 {
     font-size: 1.9em;
     color: white;
     font-family: 'caveat brush';
+    padding-right: 60px;
 }
 
 @media (min-width: 426px) and (max-width: 769px) {
@@ -176,7 +176,8 @@ header h1 {
         width: 1em;
     }
 
-    header {
+    header,
+    .right-container h3 {
         padding: 0;
     }
 
