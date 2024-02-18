@@ -115,3 +115,34 @@ header h1 {
     font-size: 2em;
     width: 120px;
 }
+
+@media (max-width: 426px) {
+    .wrapper {
+        flex-direction: column;
+    }
+
+    nav {
+        flex-direction: row;
+        height: 60px;
+        width: 100%;
+    }
+
+    nav ul {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-around;
+        width: 100%;
+    }
+
+    .container-menu-icon {
+        padding: 0 15px;
+    }
+
+    nav ul>li {
+        padding: 0;
+    }
+
+    ul li a {
+        width: 1em;
+    }
+}
