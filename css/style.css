@@ -117,9 +117,32 @@ header h1 {
     width: 120px;
 }
 
+.content-container {
+    display: grid;
+    grid-template-columns: 5fr 3fr;
+    height: calc(100% - 50px);
+}
+
+.left-container {
+    height: 100%;
+}
+
+.right-container {
+    height: 100%;
+}
+
+.right-container h3 {}
+
+@media (min-width: 426px) and (max-width: 769px) {
+    .content-container {
+        grid-template-columns: 1fr;
+    }
+}
+
 @media (max-width: 426px) {
     .wrapper {
         flex-direction: column;
+        height: 200%;
     }
 
     nav {
@@ -149,7 +172,11 @@ header h1 {
         width: 1em;
     }
 
-    header{
+    header {
         padding: 0;
+    }
+
+    .content-container {
+        grid-template-columns: 1fr;
     }
 }
