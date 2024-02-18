@@ -14,6 +14,22 @@ nav{
     width: 60px;
 }
 
+nav ul {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+nav ul > li {
+    padding: 15px 0;
+}
+
+ul li > a{
+    color: white;
+    font-size: 2em;
+    text-align: center;
+    font-family: 'berlin sans fb';
+}
+
 .container-menu-icon {
     padding: 15px 0;
 }
