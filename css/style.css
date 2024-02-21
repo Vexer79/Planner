@@ -111,7 +111,7 @@ header {
 
 header h1 {
     color: white;
-    font-family: 'caveat brush';
+    font-family: "Protest Riot", sans-serif;
     text-align: center;
     font-size: 2.5em;
     text-transform: capitalize;
@@ -135,7 +135,7 @@ header h1 {
     text-align: center;
     font-size: 1.9em;
     color: white;
-    font-family: 'caveat brush';
+    font-family: "Protest Riot", sans-serif;
     padding-right: 60px;
 }
 
