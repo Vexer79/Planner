@@ -136,7 +136,6 @@ header h1 {
     font-size: 1.9em;
     color: white;
     font-family: "Protest Riot", sans-serif;
-    padding-right: 60px;
 }
 
 @media (min-width: 426px) and (max-width: 769px) {
