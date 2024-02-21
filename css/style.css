@@ -32,7 +32,7 @@ ul li>a {
     text-transform: uppercase;
 }
 
-.container-menu-icon {
+.menu-icon-container {
     padding: 15px 0;
 }
 
@@ -166,7 +166,7 @@ header h1 {
         width: 100%;
     }
 
-    .container-menu-icon {
+    .menu-icon-container {
         padding: 0 15px;
     }
 
