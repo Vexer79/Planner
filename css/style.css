@@ -105,7 +105,7 @@ main header {
 .content-container {
     display: grid;
     grid-template-columns: 5fr 3fr;
-    height: calc(100% - 50px);
+    height: 100%;
 }
 
 .left-container {
