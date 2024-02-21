@@ -102,21 +102,6 @@ main header {
     height: 50px;
 }
 
-header {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding-right: 60px;
-}
-
-header h1 {
-    color: white;
-    font-family: "Protest Riot", sans-serif;
-    text-align: center;
-    font-size: 2.5em;
-    text-transform: capitalize;
-}
-
 .content-container {
     display: grid;
     grid-template-columns: 5fr 3fr;
