@@ -23,5 +23,21 @@
 }
 
 .completed-tasks-container {
-    
+
+}
+
+.task-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.task-header > p {
+    color: white;
+    font-family: "Montserrat", sans-serif;
+    text-align: center;
+}
+
+.task-header > p:first-letter {
+    text-transform: uppercase;
 }
