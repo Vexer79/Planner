@@ -5,6 +5,15 @@
     grid-template-columns: repeat(3, 1fr);
 }
 
+.not-started-tasks-container,
+.in-process-tasks-container,
+.completed-tasks-container {
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template: 1fr 11fr / 1fr;
+}
+
 .not-started-tasks-container {
 
 }
@@ -14,5 +23,5 @@
 }
 
 .completed-tasks-container {
-
+    
 }
