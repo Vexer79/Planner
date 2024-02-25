@@ -15,3 +15,9 @@
     grid-template: 1fr 11fr / 1fr;
     border-right: solid 1px #2c2c2c;
 }
+
+@media (max-width: 426px) {
+    .notes-header {
+        height: 50px;
+    }
+}

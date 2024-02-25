@@ -125,7 +125,7 @@ main header {
 @media (max-width: 426px) {
     .wrapper {
         flex-direction: column;
-        height: 200%;
+        height: max-content;
     }
 
     nav {
@@ -161,6 +161,7 @@ main header {
     }
 
     .content-container {
-        grid-template-columns: 1fr;
+        display: block;
+        height: 200%;
     }
 }
