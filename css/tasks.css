@@ -11,7 +11,7 @@
     width: 100%;
     height: 100%;
     display: grid;
-    grid-template: 1fr 11fr / 1fr;
+    grid-template: 50px 1fr / 1fr;
     border-right: solid 1px #2c2c2c;
 }
 
@@ -41,4 +41,36 @@
 
 .task-header > p:first-letter {
     text-transform: uppercase;
+}
+
+.task-body {
+    display: grid;
+    row-gap: 5px;
+    grid-template-rows: repeat(10, 50px);
+    max-height: calc(100vh - 50px);
+    overflow: auto;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.task-body::-webkit-scrollbar {
+    display: none;
+}
+
+.task {
+    border-radius: 5px;
+    padding: 5px;
+    height: 50px;
+}
+
+.not-started-tasks-container .task {
+    background-color: red;
+}
+
+.in-process-tasks-container .task {
+    background-color: orange;
+}
+
+.completed-tasks-container .task {
+    background-color: lightgreen;
 }
