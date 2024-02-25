@@ -32,6 +32,10 @@ ul li>a {
     text-transform: uppercase;
 }
 
+.active {
+    color: #ef233c;
+}
+
 .menu-icon-container {
     padding: 15px 0;
 }

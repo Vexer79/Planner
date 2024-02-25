@@ -8,29 +8,8 @@ const completedTasksContainer = document.getElementById("completed-tasks-contain
 const completedTasksTemplate = document.getElementById("completed-tasks-template");
 
 notStartedTasksContainer.appendChild(notStartedTasksTemplate.content.cloneNode(true));
-inProcessTasksContainer.appendChild(inProcessTasksTemplate.content.cloneNode(true));
-completedTasksContainer.appendChild(completedTasksTemplate.content.cloneNode(true));
-
+notStartedTasksContainer.appendChild(notStartedTasksTemplate.content.cloneNode(true));
 notStartedTasksContainer.appendChild(notStartedTasksTemplate.content.cloneNode(true));
 inProcessTasksContainer.appendChild(inProcessTasksTemplate.content.cloneNode(true));
-completedTasksContainer.appendChild(completedTasksTemplate.content.cloneNode(true));
-
-notStartedTasksContainer.appendChild(notStartedTasksTemplate.content.cloneNode(true));
-inProcessTasksContainer.appendChild(inProcessTasksTemplate.content.cloneNode(true));
-completedTasksContainer.appendChild(completedTasksTemplate.content.cloneNode(true));
-
-notStartedTasksContainer.appendChild(notStartedTasksTemplate.content.cloneNode(true));
-inProcessTasksContainer.appendChild(inProcessTasksTemplate.content.cloneNode(true));
-completedTasksContainer.appendChild(completedTasksTemplate.content.cloneNode(true));
-
-notStartedTasksContainer.appendChild(notStartedTasksTemplate.content.cloneNode(true));
-inProcessTasksContainer.appendChild(inProcessTasksTemplate.content.cloneNode(true));
-completedTasksContainer.appendChild(completedTasksTemplate.content.cloneNode(true));
-
-notStartedTasksContainer.appendChild(notStartedTasksTemplate.content.cloneNode(true));
-inProcessTasksContainer.appendChild(inProcessTasksTemplate.content.cloneNode(true));
-completedTasksContainer.appendChild(completedTasksTemplate.content.cloneNode(true));
-
-notStartedTasksContainer.appendChild(notStartedTasksTemplate.content.cloneNode(true));
 inProcessTasksContainer.appendChild(inProcessTasksTemplate.content.cloneNode(true));
 completedTasksContainer.appendChild(completedTasksTemplate.content.cloneNode(true));
