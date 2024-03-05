@@ -7,9 +7,12 @@ const inProcessTasksTemplate = document.getElementById("in-process-tasks-templat
 const completedTasksContainer = document.getElementById("completed-tasks-container");
 const completedTasksTemplate = document.getElementById("completed-tasks-template");
 
-notStartedTasksContainer.appendChild(notStartedTasksTemplate.content.cloneNode(true));
-notStartedTasksContainer.appendChild(notStartedTasksTemplate.content.cloneNode(true));
-notStartedTasksContainer.appendChild(notStartedTasksTemplate.content.cloneNode(true));
-inProcessTasksContainer.appendChild(inProcessTasksTemplate.content.cloneNode(true));
-inProcessTasksContainer.appendChild(inProcessTasksTemplate.content.cloneNode(true));
-completedTasksContainer.appendChild(completedTasksTemplate.content.cloneNode(true));
+const task1 = notStartedTasksTemplate.content.cloneNode(true);
+task1.children[0].addEventListener("mouseup", mouseUpHandler);
+task1.children[0].addEventListener("mousedown", mouseDownHandler);
+notStartedTasksContainer.appendChild(task1);
+
+const task2 = notStartedTasksTemplate.content.cloneNode(true);
+task2.children[0].addEventListener("mouseup", mouseUpHandler);
+task2.children[0].addEventListener("mousedown", mouseDownHandler);
+notStartedTasksContainer.appendChild(task2);
