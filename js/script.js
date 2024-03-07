@@ -10,4 +10,5 @@ const completedTasksTemplate = document.getElementById("completed-tasks-template
 const containers = document.querySelectorAll(".task-body");
 const task1 = notStartedTasksTemplate.content.cloneNode(true);
 task1.children[0].addEventListener("dragstart", drag(containers));
+task1.children[0].addEventListener("touchstart", touch(containers));
 notStartedTasksContainer.appendChild(task1);
