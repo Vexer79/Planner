@@ -7,7 +7,7 @@ function drag(containers) {
             });
             container.addEventListener("drop", function () {
                 if (selected !== null) {
-                    container.appendChild(selected);
+                    container.appendChild(selected)
                 }
                 selected = null;
             });
@@ -21,6 +21,7 @@ function touch(containers) {
         if (selected.className !== "task") {
             selected = selected.parentElement;
         }
+        document.body.style.overflow = "hidden";
         for (let dragContainer of containers) {
             dragContainer.addEventListener("touchend", function (event) {
                 let lastPosX = event.changedTouches[event.changedTouches.length - 1].clientX;
@@ -37,6 +38,7 @@ function touch(containers) {
                         }
                     }
                 }
+                document.body.style.overflow = "auto";
             });
         }
     }
