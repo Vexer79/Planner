@@ -7,7 +7,7 @@ function drag(containers) {
             });
             container.addEventListener("drop", function () {
                 if (selected !== null) {
-                    container.appendChild(selected)
+                    container.appendChild(selected);
                 }
                 selected = null;
             });
