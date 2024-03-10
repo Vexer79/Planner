@@ -31,9 +31,7 @@ function touch(containers) {
                         let pos = dropContainer.getBoundingClientRect();
                         if (pos.top < lastPosY && lastPosY < pos.bottom
                             && pos.left < lastPosX && lastPosX < pos.right) {
-                            if (selected !== null) {
-                                dropContainer.appendChild(selected);
-                            }
+                            selected !== null && dropContainer.appendChild(selected);
                             selected = null;
                         }
                     }
