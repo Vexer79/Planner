@@ -1,4 +1,17 @@
-@import url(reset-style.css);
+@import url("reset-style.css");
+@import url("add-task-menu.css");
+@import url("tasks.css");
+@import url("notes.css");
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Protest+Riot&display=swap');
+
+@font-face {
+    font-family: 'Berlin Sans FB';
+    font-style: normal;
+    font-weight: normal;
+    src: local('Berlin Sans FB'), url('../fonts/BRLNSR.woff') format('woff');
+}
 
 .wrapper {
     display: flex;
@@ -121,7 +134,7 @@ main header {
 }
 
 .add-button-container {
-    width: 100%;
+    width: 60px;
     height: 60px;
     margin-top: auto;
 }
@@ -185,5 +198,10 @@ main header {
     .content-container {
         display: block;
         height: 200%;
+    }
+
+    .add-button-container {
+        margin-right: 10px;
+        width: 60px;
     }
 }
