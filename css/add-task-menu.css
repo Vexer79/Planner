@@ -13,3 +13,13 @@
     align-items: center;
     flex-direction: column;
 }
+
+#close-window-button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 40px;
+    height: 40px;
+    -webkit-tap-highlight-color: transparent;
+    background: url("../image/close_button.svg") center / 100% no-repeat;
+}
