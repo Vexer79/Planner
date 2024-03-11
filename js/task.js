@@ -41,3 +41,47 @@ function touch(containers) {
         }
     }
 }
+
+function addTask() {
+    return function () {
+        const taskTemplate = document.getElementById("add-task-template");
+
+    }
+}
+
+function closeWindow(child) {
+    return function () {
+        const container = document.querySelector(".wrapper");
+        container.removeChild(child);
+    }
+}
+
+function openAddTaskMenu() {
+    return function () {
+        const addTaskWindowTemplate = document.getElementById("add-task-window-template");
+        const container = document.querySelector(".wrapper");
+
+        let taskWindow = addTaskWindowTemplate.content.cloneNode(true);
+        container.appendChild(taskWindow);
+
+        const addTaskButton = document.getElementById("add-task-button");
+        const closeButton = document.getElementById("close-window-button");
+
+        addTaskButton.addEventListener("click", createTask("hello"));
+        closeButton.addEventListener("click", closeWindow(closeButton.parentNode));
+
+    }
+}
+
+function createTask(taskContent) {
+    const notStartedTasksContainer = document.getElementById("not-started-tasks-container");
+    const notStartedTasksTemplate = document.getElementById("not-started-tasks-template");
+    const containers = document.querySelectorAll(".task-body");
+    return function () {
+        const task = notStartedTasksTemplate.content.cloneNode(true);
+        task.children[0].children[0].textContent = taskContent;
+        task.children[0].addEventListener("dragstart", drag(containers));
+        task.children[0].addEventListener("touchstart", touch(containers));
+        notStartedTasksContainer.appendChild(task);
+    };
+}
