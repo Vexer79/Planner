@@ -77,18 +77,19 @@ function createTask() {
     const notStartedTasksTemplate = document.getElementById("not-started-tasks-template");
     const containers = document.querySelectorAll(".task-body");
     return function () {
-        const taskContent = getTaskContent();
-        if (taskContent) {
+        const taskContent = new function () {
+            const taskInput = document.getElementById("task-content");
+            this.get = function () {
+                return taskInput.value;
+            }
+        };
+        console.log(taskContent.getVal);
+        if (taskContent.get()) {
             const task = notStartedTasksTemplate.content.cloneNode(true);
-            task.children[0].children[0].textContent = taskContent;
+            task.children[0].children[0].textContent = taskContent.get();
             task.children[0].addEventListener("dragstart", drag(containers));
             task.children[0].addEventListener("touchstart", touch(containers));
             notStartedTasksContainer.appendChild(task);
         }
     };
-}
-
-function getTaskContent() {
-    const taskInput = document.getElementById("task-content");
-    return taskInput.value;
 }
