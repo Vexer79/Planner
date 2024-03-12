@@ -66,22 +66,29 @@ function openAddTaskMenu() {
 
         const addTaskButton = document.getElementById("add-task-button");
         const closeButton = document.getElementById("close-window-button");
-
-        addTaskButton.addEventListener("click", createTask("hello"));
+        addTaskButton.addEventListener("click", createTask());
         closeButton.addEventListener("click", closeWindow(closeButton.parentNode));
 
     }
 }
 
-function createTask(taskContent) {
+function createTask() {
     const notStartedTasksContainer = document.getElementById("not-started-tasks-container");
     const notStartedTasksTemplate = document.getElementById("not-started-tasks-template");
     const containers = document.querySelectorAll(".task-body");
     return function () {
-        const task = notStartedTasksTemplate.content.cloneNode(true);
-        task.children[0].children[0].textContent = taskContent;
-        task.children[0].addEventListener("dragstart", drag(containers));
-        task.children[0].addEventListener("touchstart", touch(containers));
-        notStartedTasksContainer.appendChild(task);
+        const taskContent = getTaskContent();
+        if (taskContent) {
+            const task = notStartedTasksTemplate.content.cloneNode(true);
+            task.children[0].children[0].textContent = taskContent;
+            task.children[0].addEventListener("dragstart", drag(containers));
+            task.children[0].addEventListener("touchstart", touch(containers));
+            notStartedTasksContainer.appendChild(task);
+        }
     };
+}
+
+function getTaskContent() {
+    const taskInput = document.getElementById("task-content");
+    return taskInput.value;
 }
