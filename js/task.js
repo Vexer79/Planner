@@ -82,6 +82,10 @@ function createTask() {
             this.get = function () {
                 return taskInput.value;
             }
+
+            this.clear = function () {
+                taskInput.value = "";
+            }
         };
         console.log(taskContent.getVal);
         if (taskContent.get()) {
@@ -89,6 +93,7 @@ function createTask() {
             task.children[0].children[0].textContent = taskContent.get();
             task.children[0].addEventListener("dragstart", drag(containers));
             task.children[0].addEventListener("touchstart", touch(containers));
+            taskContent.clear();
             notStartedTasksContainer.appendChild(task);
         }
     };
