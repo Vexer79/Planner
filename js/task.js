@@ -42,13 +42,6 @@ function touch(containers) {
     }
 }
 
-function addTask() {
-    return function () {
-        const taskTemplate = document.getElementById("add-task-template");
-
-    }
-}
-
 function closeWindow(child) {
     return function () {
         const container = document.querySelector(".wrapper");
