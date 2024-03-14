@@ -134,7 +134,7 @@ main header {
 }
 
 .functions-container {
-    height: 100%;
+    height: 55%;
     width: 100%;
     display: flex;
     flex-direction: column;
