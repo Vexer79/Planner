@@ -59,6 +59,11 @@ function openAddTaskMenu() {
 
         const addTaskButton = document.getElementById("add-task-button");
         const closeButton = document.getElementById("close-window-button");
+        const taskInput = document.getElementById("task-content");
+
+        taskInput.addEventListener("keyup", function(event) {
+            event.key === "Enter" && createTask()();
+        });
         addTaskButton.addEventListener("click", createTask());
         closeButton.addEventListener("click", closeWindow(closeButton.parentNode));
 
