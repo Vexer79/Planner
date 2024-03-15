@@ -85,7 +85,6 @@ function createTask() {
                 taskInput.value = "";
             }
         };
-        console.log(taskContent.getVal);
         if (taskContent.get()) {
             const task = notStartedTasksTemplate.content.cloneNode(true);
             task.children[0].children[0].textContent = taskContent.get();
