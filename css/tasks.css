@@ -45,6 +45,7 @@
     overflow: auto;
     -ms-overflow-style: none;
     scrollbar-width: none;
+    padding: 0 2px;
 }
 
 .task-body::-webkit-scrollbar {
@@ -53,23 +54,35 @@
 
 .task {
     border-radius: 5px;
-    padding: 5px;
-    height: 50px;
+    padding: 10px;
     position: relative;
     margin-bottom: 5px;
     user-select: none;
 }
 
+.task p {
+    height: 100%;
+    width: 100%;
+    color: #1f1c1f;
+    font-size: 1.2em;
+    word-break: break-word;
+    font-family: "Montserrat", sans-serif;
+}
+
+.task p::first-letter {
+    text-transform: uppercase;
+}
+
 .not-started-tasks-container .task {
-    background-color: red;
+    background-color: #fb5607;
 }
 
 .in-process-tasks-container .task {
-    background-color: orange;
+    background-color: #ffbe0b;
 }
 
 .completed-tasks-container .task {
-    background-color: lightgreen;
+    background-color: #77dd77;
 }
 
 @media (min-width: 426px) and (max-width: 769px) {
