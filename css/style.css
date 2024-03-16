@@ -212,4 +212,9 @@ main header {
         margin-right: 10px;
         width: 60px;
     }
+
+    .functions-container {
+        width: 80px;
+        height: 60px;
+    }
 }
