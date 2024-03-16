@@ -27,6 +27,8 @@
     height: 99%;
     border: none;
     overflow: auto;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
     outline: none;
     -webkit-box-shadow: none;
     -moz-box-shadow: none;
@@ -34,7 +36,11 @@
     resize: none;
     background-color: transparent;
     color: white;
-    padding: 15px;
+    padding: 5px 15px 15px 15px;
+    word-break: break-word;
+    font-size: 1.2em;
+    line-height: 1.3em;
+    font-family: "Montserrat", sans-serif;
 }
 
 @media (max-width: 426px) {
