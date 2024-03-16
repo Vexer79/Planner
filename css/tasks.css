@@ -15,12 +15,6 @@
     border-right: solid 1px #2c2c2c;
 }
 
-.not-started-tasks-container {}
-
-.in-process-tasks-container {}
-
-.completed-tasks-container {}
-
 .task-header {
     display: flex;
     justify-content: center;
