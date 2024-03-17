@@ -79,11 +79,11 @@
     background-color: #77dd77;
 }
 
-@media (min-width: 426px) and (max-width: 769px) {
+/* @media (min-width: 426px) and (max-width: 769px) {
     .task-container {
         height: max-content;
     }
-}
+} */
 
 @media (max-width: 426px) {
     .task-container {

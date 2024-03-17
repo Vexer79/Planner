@@ -159,18 +159,19 @@ main header {
     filter: invert(65%);
 }
 
-@media (min-width: 426px) and (max-width: 769px) {
+@media (min-width: 426px) and (max-width: 1025px) {
     .content-container {
         grid-template-columns: 1fr;
+        grid-template-rows: repeat(2, 1fr);
+    }
+
+    .task-container > div,
+    .task-container{
+        max-height: calc(45vh - 25px);
     }
 }
 
-@media (max-width: 426px) {
-    .wrapper {
-        flex-direction: column;
-        height: max-content;
-    }
-
+@media (max-width: 769px) {
     nav {
         flex-direction: row;
         height: 60px;
@@ -198,6 +199,18 @@ main header {
         width: 1em;
     }
 
+    .functions-container {
+        width: 80px;
+        height: 60px;
+    }
+}
+
+@media (max-width: 426px) {
+    .wrapper {
+        flex-direction: column;
+        height: max-content;
+    }
+    
     header,
     .right-container h3 {
         padding: 0;
@@ -211,10 +224,5 @@ main header {
     .add-button-container {
         margin-right: 10px;
         width: 60px;
-    }
-
-    .functions-container {
-        width: 80px;
-        height: 60px;
     }
 }
