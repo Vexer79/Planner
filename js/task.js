@@ -22,6 +22,7 @@ function touch(containers) {
             selected = selected.parentElement;
         }
         document.body.style.overflow = "hidden";
+        selected.parentNode.style.overflow = "hidden";
         for (let dragContainer of containers) {
             dragContainer.addEventListener("touchend", function (event) {
                 let lastPosX = event.changedTouches[event.changedTouches.length - 1].clientX;
@@ -31,12 +32,15 @@ function touch(containers) {
                         let pos = dropContainer.getBoundingClientRect();
                         if (pos.top < lastPosY && lastPosY < pos.bottom
                             && pos.left < lastPosX && lastPosX < pos.right) {
-                            selected !== null && dropContainer.appendChild(selected);
-                            selected = null;
+                            if (selected !== null) {
+                                document.body.style.overflow = "auto";
+                                selected.parentNode.style.overflow = "auto";
+                                dropContainer.appendChild(selected);
+                                selected = null;
+                            }
                         }
                     }
                 }
-                document.body.style.overflow = "auto";
             });
         }
     }
@@ -61,7 +65,7 @@ function openAddTaskMenu() {
         const closeButton = document.getElementById("close-window-button");
         const taskInput = document.getElementById("task-content");
 
-        taskInput.addEventListener("keyup", function(event) {
+        taskInput.addEventListener("keyup", function (event) {
             event.key === "Enter" && createTask()();
         });
         addTaskButton.addEventListener("click", createTask());
