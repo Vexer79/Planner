@@ -66,15 +66,15 @@ function openAddTaskMenu() {
         const taskInput = document.getElementById("task-content");
 
         taskInput.addEventListener("keyup", function (event) {
-            event.key === "Enter" && createTask()();
+            event.key === "Enter" && createTaskUsingInterface()();
         });
-        addTaskButton.addEventListener("click", createTask());
+        addTaskButton.addEventListener("click", createTaskUsingInterface());
         closeButton.addEventListener("click", closeWindow(closeButton.parentNode));
 
     }
 }
 
-function createTask() {
+function createTaskUsingInterface() {
     const notStartedTasksContainer = document.getElementById("not-started-tasks-container");
     const notStartedTasksTemplate = document.getElementById("not-started-tasks-template");
     const containers = document.querySelectorAll(".task-body");
@@ -98,4 +98,26 @@ function createTask() {
             notStartedTasksContainer.appendChild(task);
         }
     };
+}
+
+function createTask(taskContent) {
+    if (taskContent.length != 0) {
+        const notStartedTasksContainer = document.getElementById("not-started-tasks-container");
+        const notStartedTasksTemplate = document.getElementById("not-started-tasks-template");
+        const containers = document.querySelectorAll(".task-body");
+        const task = notStartedTasksTemplate.content.cloneNode(true);
+        task.children[0].children[0].textContent = taskContent;
+        task.children[0].addEventListener("dragstart", drag(containers));
+        task.children[0].addEventListener("touchstart", touch(containers));
+        notStartedTasksContainer.appendChild(task);
+    }
+}
+
+function clearAllTasks() {
+    const containers = document.querySelectorAll(".task-body");
+    for(let container of containers) {
+        let template = container.children[0];
+        container.innerHTML = "";
+        container.appendChild(template);
+    }
 }
