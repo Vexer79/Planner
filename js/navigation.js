@@ -32,7 +32,3 @@ var tasks = {
         viewTaskOf(dailyLink);
     }
 })();
-
-(function () {
-
-})();
