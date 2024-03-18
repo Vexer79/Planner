@@ -43,6 +43,11 @@ ul li>a {
     text-align: center;
     font-family: 'berlin sans fb';
     text-transform: uppercase;
+    transition: all .5s ease;
+}
+
+ul li>a:hover {
+    color: gray;
 }
 
 .active {
@@ -165,8 +170,8 @@ main header {
         grid-template-rows: repeat(2, 1fr);
     }
 
-    .task-container > div,
-    .task-container{
+    .task-container>div,
+    .task-container {
         max-height: calc(45vh - 25px);
     }
 }
@@ -210,7 +215,7 @@ main header {
         flex-direction: column;
         height: max-content;
     }
-    
+
     header,
     .right-container h3 {
         padding: 0;
