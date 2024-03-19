@@ -11,7 +11,9 @@
                 event.preventDefault();
             });
             container.addEventListener("drop", function () {
-                appendChildToContainer(container, selected);
+                if (selected !== null) {
+                    container.appendChild(selected);
+                }
                 selected = null;
             });
         }
@@ -43,12 +45,6 @@
                     }
                 }
             });
-        }
-    }
-
-    function appendChildToContainer(container, child) {
-        if (child !== null) {
-            container.appendChild(child);
         }
     }
 
