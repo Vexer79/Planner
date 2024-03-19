@@ -1,122 +1,79 @@
 (function (window) {
     let Task = {};
-    function drag(containers) {
-        return function (event) {
-            let selected = event.target;
-            for (let container of containers) {
-                container.addEventListener("dragover", function (event) {
-                    event.preventDefault();
-                });
-                container.addEventListener("drop", function () {
-                    if (selected !== null) {
-                        container.appendChild(selected);
-                    }
-                    selected = null;
-                });
-            }
+    const containers = document.querySelectorAll(".task-body");
+    const notStartedTasksContainer = document.getElementById("not-started-tasks-container");
+    const notStartedTasksTemplate = document.getElementById("not-started-tasks-template");
+
+    function drag(event) {
+        let selected = event.target;
+        for (let container of containers) {
+            container.addEventListener("dragover", function (event) {
+                event.preventDefault();
+            });
+            container.addEventListener("drop", function () {
+                if (selected !== null) {
+                    container.appendChild(selected);
+                }
+                selected = null;
+            });
         }
     }
 
-    function touch(containers) {
-        return function (event) {
-            let selected = event.target;
-            if (selected.className !== "task") {
-                selected = selected.parentElement;
-            }
-            document.body.style.overflow = "hidden";
-            selected.parentNode.style.overflow = "hidden";
-            for (let dragContainer of containers) {
-                dragContainer.addEventListener("touchend", function (event) {
-                    let lastPosX = event.changedTouches[event.changedTouches.length - 1].clientX;
-                    let lastPosY = event.changedTouches[event.changedTouches.length - 1].clientY;
-                    for (let dropContainer of containers) {
-                        if (dragContainer !== dropContainer) {
-                            let pos = dropContainer.getBoundingClientRect();
-                            if (pos.top < lastPosY && lastPosY < pos.bottom
-                                && pos.left < lastPosX && lastPosX < pos.right) {
-                                if (selected !== null) {
-                                    document.body.style.overflow = "auto";
-                                    selected.parentNode.style.overflow = "auto";
-                                    dropContainer.appendChild(selected);
-                                    selected = null;
-                                }
+    function touch(event) {
+        let selected = event.target;
+        if (selected.className !== "task") {
+            selected = selected.parentElement;
+        }
+        document.body.style.overflow = "hidden";
+        selected.parentNode.style.overflow = "hidden";
+        for (let dragContainer of containers) {
+            dragContainer.addEventListener("touchend", function (event) {
+                let lastPosX = event.changedTouches[event.changedTouches.length - 1].clientX;
+                let lastPosY = event.changedTouches[event.changedTouches.length - 1].clientY;
+                for (let dropContainer of containers) {
+                    if (dragContainer !== dropContainer) {
+                        let pos = dropContainer.getBoundingClientRect();
+                        if (pos.top < lastPosY && lastPosY < pos.bottom
+                            && pos.left < lastPosX && lastPosX < pos.right) {
+                            if (selected !== null) {
+                                document.body.style.overflow = "auto";
+                                selected.parentNode.style.overflow = "auto";
+                                dropContainer.appendChild(selected);
+                                selected = null;
                             }
                         }
                     }
-                });
-            }
-        }
-    }
-
-    Task.closeWindow = function closeWindow(child) {
-        return function () {
-            const container = document.querySelector(".wrapper");
-            container.removeChild(child);
-        }
-    }
-
-    Task.openAddTaskMenu = function () {
-        return function () {
-            const addTaskWindowTemplate = document.getElementById("add-task-window-template");
-            const container = document.querySelector(".wrapper");
-
-            let taskWindow = addTaskWindowTemplate.content.cloneNode(true);
-            container.appendChild(taskWindow);
-
-            const addTaskButton = document.getElementById("add-task-button");
-            const closeButton = document.getElementById("close-window-button");
-            const taskInput = document.getElementById("task-content");
-
-            taskInput.addEventListener("keyup", function (event) {
-                event.key === "Enter" && Task.createTaskUsingInterface()();
+                }
             });
-            addTaskButton.addEventListener("click", Task.createTaskUsingInterface());
-            closeButton.addEventListener("click", Task.closeWindow(closeButton.parentNode));
-
         }
     }
 
     Task.createTaskUsingInterface = function () {
-        const notStartedTasksContainer = document.getElementById("not-started-tasks-container");
-        const notStartedTasksTemplate = document.getElementById("not-started-tasks-template");
-        const containers = document.querySelectorAll(".task-body");
-        return function () {
-            const taskContent = new function () {
-                const taskInput = document.getElementById("task-content");
-                this.get = function () {
-                    return taskInput.value;
-                }
+        const taskContent = new function () {
+            const taskInput = document.getElementById("input-task-content");
+            this.get = function () {
+                return taskInput.value;
+            }
 
-                this.clear = function () {
-                    taskInput.value = "";
-                }
-            };
-            if (taskContent.get()) {
-                const task = notStartedTasksTemplate.content.cloneNode(true);
-                task.children[0].children[0].textContent = taskContent.get();
-                task.children[0].addEventListener("dragstart", drag(containers));
-                task.children[0].addEventListener("touchstart", touch(containers));
-                taskContent.clear();
-                notStartedTasksContainer.appendChild(task);
+            this.clear = function () {
+                taskInput.value = "";
             }
         };
+        Task.createTask(taskContent.get());
+        taskContent.clear();
     }
 
     Task.createTask = function (taskContent) {
         if (taskContent.length != 0) {
-            const notStartedTasksContainer = document.getElementById("not-started-tasks-container");
-            const notStartedTasksTemplate = document.getElementById("not-started-tasks-template");
-            const containers = document.querySelectorAll(".task-body");
             const task = notStartedTasksTemplate.content.cloneNode(true);
             task.children[0].children[0].textContent = taskContent;
-            task.children[0].addEventListener("dragstart", drag(containers));
-            task.children[0].addEventListener("touchstart", touch(containers));
+            task.children[0].addEventListener("dragstart", drag);
+            task.children[0].addEventListener("touchstart", touch);
             notStartedTasksContainer.appendChild(task);
         }
     }
 
     Task.clearAllTasks = function () {
-        const containers = document.querySelectorAll(".task-body");
         for (let container of containers) {
             let template = container.children[0];
             container.innerHTML = "";
@@ -124,4 +81,30 @@
         }
     }
     window.Task = Task;
+})(window);
+
+(function (window) {
+    const createTaskWindow = {};
+    const wrapper = document.querySelector(".wrapper");
+    const createTaskWindowTemplate = document.getElementById("create-task-window-template");
+
+    createTaskWindow.close = function () {
+        wrapper.removeChild(document.querySelector(".add-task-window"));
+    }
+
+    createTaskWindow.open = function () {
+        wrapper.appendChild(createTaskWindowTemplate.content.cloneNode(true));
+
+        const addTaskButton = document.getElementById("add-task-button");
+        const closeButton = document.getElementById("close-window-button");
+        const taskInput = document.getElementById("input-task-content");
+
+        taskInput.addEventListener("keyup", function (event) {
+            event.key === "Enter" && Task.createTaskUsingInterface();
+        });
+        addTaskButton.addEventListener("click", Task.createTaskUsingInterface);
+        closeButton.addEventListener("click", createTaskWindow.close);
+    }
+
+    window.createTaskWindow = createTaskWindow;
 })(window);
