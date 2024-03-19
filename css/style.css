@@ -147,12 +147,12 @@ main header {
     padding: 5px 0;
 }
 
-.add-button-container {
+.open-create-task-window-container {
     width: 60px;
     height: 60px;
 }
 
-.add-button-container button {
+.open-create-task-window-container button {
     width: 100%;
     height: 100%;
     transition: all .25s ease;
@@ -160,7 +160,7 @@ main header {
     filter: invert(100%);
 }
 
-.add-button-container button:hover {
+.open-create-task-window-container button:hover {
     filter: invert(65%);
 }
 
@@ -226,7 +226,7 @@ main header {
         height: 200%;
     }
 
-    .add-button-container {
+    .open-create-task-window-container {
         margin-right: 10px;
         width: 60px;
     }

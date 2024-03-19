@@ -1,4 +1,4 @@
 (function () {
-    const addTaskMenuButton = document.getElementById("add-task-menu");
+    const addTaskMenuButton = document.getElementById("open-create-task-window-button");
     addTaskMenuButton.addEventListener("click", createTaskWindow.open);
 })();
