@@ -1,4 +1,4 @@
-.add-task-window {
+.create-task-window {
     width: 25%;
     min-width: 300px;
     height: 250px;
@@ -24,7 +24,7 @@
     background: url("../image/close_button.svg") center / 100% no-repeat;
 }
 
-#add-task-button {
+#create-task-button {
     position: absolute;
     bottom: 0;
     left: 50%;
@@ -36,11 +36,11 @@
     transition: all .5s ease;
 }
 
-#add-task-button:hover {
+#create-task-button:hover {
     background-color: lightblue;
 }
 
-#task-content {
+#input-task-content {
     border: solid 1px gray;
     font-size: 1.5em;
     padding: 10px;
