@@ -15,14 +15,14 @@ var tasks = {
         link.addEventListener("click", function () {
             document.querySelector(".active").classList.remove("active");
             link.classList.add("active");
-            clearAllTasks();
+            Task.clearAllTasks();
             viewTaskOf(link);
         });
     }
 
     function viewTaskOf(link) {
         for (let i = 1; i < Object.keys(tasks[link.textContent]).length + 1; i++) {
-            createTask(tasks[link.textContent][i]);
+            Task.createTask(tasks[link.textContent][i]);
         }
     }
 
