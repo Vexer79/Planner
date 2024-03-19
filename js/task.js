@@ -64,7 +64,7 @@
     }
 
     Task.createTask = function (taskContent) {
-        if (taskContent.length != 0) {
+        if (taskContent) {
             const task = notStartedTasksTemplate.content.cloneNode(true);
             task.children[0].children[0].textContent = taskContent;
             task.children[0].addEventListener("dragstart", drag);
@@ -89,7 +89,7 @@
     const createTaskWindowTemplate = document.getElementById("create-task-window-template");
 
     createTaskWindow.close = function () {
-        wrapper.removeChild(document.querySelector(".add-task-window"));
+        wrapper.removeChild(document.querySelector(".create-task-window"));
     }
 
     createTaskWindow.open = function () {
