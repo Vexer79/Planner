@@ -48,7 +48,7 @@
         }
     }
 
-    Task.createTaskUsingInterface = function () {
+    Task.createUsingInterface = function () {
         const taskContent = new function () {
             const taskInput = document.getElementById("input-task-content");
             this.get = function () {
@@ -59,11 +59,11 @@
                 taskInput.value = "";
             }
         };
-        Task.createTask(taskContent.get());
+        Task.create(taskContent.get());
         taskContent.clear();
     }
 
-    Task.createTask = function (taskContent) {
+    Task.create = function (taskContent) {
         if (taskContent) {
             const task = notStartedTasksTemplate.content.cloneNode(true);
             task.children[0].children[0].textContent = taskContent;
@@ -73,7 +73,7 @@
         }
     }
 
-    Task.clearAllTasks = function () {
+    Task.clearAll = function () {
         for (let container of containers) {
             let template = container.children[0];
             container.innerHTML = "";
@@ -100,9 +100,9 @@
         const taskInput = document.getElementById("input-task-content");
 
         taskInput.addEventListener("keyup", function (event) {
-            event.key === "Enter" && Task.createTaskUsingInterface();
+            event.key === "Enter" && Task.createUsingInterface();
         });
-        createTaskButton.addEventListener("click", Task.createTaskUsingInterface);
+        createTaskButton.addEventListener("click", Task.createUsingInterface);
         closeButton.addEventListener("click", createTaskWindow.close);
     }
 

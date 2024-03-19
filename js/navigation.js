@@ -9,20 +9,19 @@ var tasks = {
 };
 
 (function () {
-    getDailyTasks();
     let links = document.querySelectorAll("ul li>a");
     for (let link of links) {
         link.addEventListener("click", function () {
             document.querySelector(".active").classList.remove("active");
             link.classList.add("active");
-            Task.clearAllTasks();
+            Task.clearAll();
             viewTaskOf(link);
         });
     }
 
     function viewTaskOf(link) {
         for (let i = 1; i < Object.keys(tasks[link.textContent]).length + 1; i++) {
-            Task.createTask(tasks[link.textContent][i]);
+            Task.create(tasks[link.textContent][i]);
         }
     }
 
