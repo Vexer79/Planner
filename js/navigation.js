@@ -8,7 +8,8 @@ var tasks = {
     "Y": new Object(),
 };
 
-(function () {
+(function (window) {
+    let Task = window.Task;
     let links = document.querySelectorAll("ul li>a");
     for (let link of links) {
         link.addEventListener("click", function () {
@@ -25,9 +26,10 @@ var tasks = {
         }
     }
 
-    function getDailyTasks() {
+    Task.viewDailyTasks = function () {
         let dailyLink = document.querySelector("ul li>a:first-child");
         console.log(tasks[dailyLink.textContent]);
         viewTaskOf(dailyLink);
     }
-})();
+    window.Task = Task;
+})(window);
