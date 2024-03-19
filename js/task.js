@@ -13,8 +13,8 @@
             container.addEventListener("drop", function () {
                 if (selected !== null) {
                     container.appendChild(selected);
+                    selected = null;
                 }
-                selected = null;
             });
         }
     }
@@ -95,14 +95,14 @@
     createTaskWindow.open = function () {
         wrapper.appendChild(createTaskWindowTemplate.content.cloneNode(true));
 
-        const addTaskButton = document.getElementById("add-task-button");
+        const createTaskButton = document.getElementById("create-task-button");
         const closeButton = document.getElementById("close-window-button");
         const taskInput = document.getElementById("input-task-content");
 
         taskInput.addEventListener("keyup", function (event) {
             event.key === "Enter" && Task.createTaskUsingInterface();
         });
-        addTaskButton.addEventListener("click", Task.createTaskUsingInterface);
+        createTaskButton.addEventListener("click", Task.createTaskUsingInterface);
         closeButton.addEventListener("click", createTaskWindow.close);
     }
 
