@@ -1,11 +1,20 @@
 var tasks = {
     "D": {
-        1: "hello",
+        1: "day",
         2: "hi",
     },
-    "W": new Object(),
-    "M": new Object(),
-    "Y": new Object(),
+    "W": {
+        1: "week",
+        2: "hi",
+    },
+    "M": {
+        1: "month",
+        2: "hi",
+    },
+    "Y": {
+        1: "year",
+        2: "hi",
+    },
 };
 
 (function (window) {
