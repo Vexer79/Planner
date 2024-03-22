@@ -28,7 +28,6 @@ var tasks = {
 
     Task.viewDailyTasks = function () {
         let dailyLink = document.querySelector("ul li>a:first-child");
-        console.log(tasks[dailyLink.textContent]);
         viewTaskOf(dailyLink);
     }
     window.Task = Task;
