@@ -30,9 +30,8 @@ var tasks = {
     }
 
     function viewTaskOf(link) {
-        for (let i = 1; i < Object.keys(tasks[link.textContent]).length + 1; i++) {
-            Task.create(tasks[link.textContent][i]);
-        }
+        const { [link.textContent]: currentTasks } = tasks;
+        Object.keys(currentTasks).forEach(key => { Task.create(currentTasks[key]) });
     }
 
     Task.viewDailyTasks = function () {
