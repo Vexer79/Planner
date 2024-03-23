@@ -44,6 +44,7 @@ ul li>a {
     font-family: 'berlin sans fb';
     text-transform: uppercase;
     transition: all .5s ease;
+    user-select: none;
 }
 
 ul li>a:hover {
