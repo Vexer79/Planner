@@ -1,8 +1,9 @@
 (function (window) {
     let Task = {};
     const containers = document.querySelectorAll(".task-body");
-    const notStartedTasksContainer = document.getElementById("not-started-tasks-container");
     const notStartedTasksTemplate = document.getElementById("not-started-tasks-template");
+    const inProcessTasksTemplate = document.getElementById("in-process-tasks-template");
+    const completedTasksTemplate = document.getElementById("completed-tasks-template");
 
     function drag(event) {
         let selected = event.target;
@@ -63,18 +64,30 @@
                 taskInput.value = "";
             };
         })();
-        Task.create(taskContent.get());
+        Task.create.notStarted(taskContent.get());
         taskContent.clear();
     };
 
-    Task.create = function (taskContent) {
+    function createTask(template, container, taskContent) {
         if (taskContent) {
-            const task = notStartedTasksTemplate.content.cloneNode(true);
+            const task = template.content.cloneNode(true);
             task.children[0].children[0].textContent = taskContent;
             task.children[0].addEventListener("dragstart", drag);
             task.children[0].addEventListener("touchstart", touch);
-            notStartedTasksContainer.appendChild(task);
+            container.appendChild(task);
         }
+    }
+
+    Task.create = {
+        notStarted: function (taskContent) {
+            createTask(notStartedTasksTemplate, containers[0], taskContent);
+        },
+        inProcess: function (taskContent) {
+            createTask(inProcessTasksTemplate, containers[1], taskContent);
+        },
+        completed: function (taskContent) {
+            createTask(completedTasksTemplate, containers[2], taskContent);
+        },
     };
 
     Task.clearAll = function () {
