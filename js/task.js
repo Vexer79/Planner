@@ -7,6 +7,8 @@
 
     function drag(event) {
         let selected = event.target;
+        const currentTaskSection = document.querySelector(".active").textContent;
+        const parentContainer = this.parentElement;
         for (let container of containers) {
             container.addEventListener("dragover", function (event) {
                 event.preventDefault();
@@ -14,10 +16,30 @@
             container.addEventListener("drop", function () {
                 if (selected !== null) {
                     container.appendChild(selected);
+                    setCurrentTasksOfContanerToTasks(container, currentTaskSection);
+                    setCurrentTasksOfContanerToTasks(parentContainer, currentTaskSection);
                     selected = null;
                 }
             });
         }
+    }
+
+    function setCurrentTasksOfContanerToTasks(container, currentTaskSection){
+        const containerObject = {};
+        for (let i = 1; i < container.children.length; i++) {
+            containerObject[i] = container.children[i].innerText;
+        }
+        const containerId = getId(container);
+        tasks[currentTaskSection][containerId] = containerObject;
+        return containerObject;
+    }
+
+    function getId(element) {
+        return element.id
+            .replace("-tasks-container", "")
+            .split("-")
+            .join(" ")
+            .replace(/\s\w/, (symb) => symb.trim().toUpperCase());
     }
 
     function touch(event) {
