@@ -33,8 +33,12 @@
                 for (let dropContainer of containers) {
                     if (dragContainer !== dropContainer) {
                         let pos = dropContainer.getBoundingClientRect();
-                        if (pos.top < lastPosY && lastPosY < pos.bottom
-                            && pos.left < lastPosX && lastPosX < pos.right) {
+                        if (
+                            pos.top < lastPosY &&
+                            lastPosY < pos.bottom &&
+                            pos.left < lastPosX &&
+                            lastPosX < pos.right
+                        ) {
                             if (selected !== null) {
                                 document.body.style.overflow = "auto";
                                 selected.parentNode.style.overflow = "auto";
@@ -49,19 +53,19 @@
     }
 
     Task.createUsingInterface = function () {
-        const taskContent = new function () {
+        const taskContent = new (function () {
             const taskInput = document.getElementById("input-task-content");
             this.get = function () {
                 return taskInput.value;
-            }
+            };
 
             this.clear = function () {
                 taskInput.value = "";
-            }
-        };
+            };
+        })();
         Task.create(taskContent.get());
         taskContent.clear();
-    }
+    };
 
     Task.create = function (taskContent) {
         if (taskContent) {
@@ -71,7 +75,7 @@
             task.children[0].addEventListener("touchstart", touch);
             notStartedTasksContainer.appendChild(task);
         }
-    }
+    };
 
     Task.clearAll = function () {
         for (let container of containers) {
@@ -79,7 +83,7 @@
             container.innerHTML = "";
             container.appendChild(template);
         }
-    }
+    };
     window.Task = Task;
 })(window);
 
@@ -90,7 +94,7 @@
 
     createTaskWindow.close = function () {
         wrapper.removeChild(document.querySelector(".create-task-window"));
-    }
+    };
 
     createTaskWindow.open = function () {
         wrapper.appendChild(createTaskWindowTemplate.content.cloneNode(true));
@@ -104,7 +108,7 @@
         });
         createTaskButton.addEventListener("click", Task.createUsingInterface);
         closeButton.addEventListener("click", createTaskWindow.close);
-    }
+    };
 
     window.createTaskWindow = createTaskWindow;
 })(window);
