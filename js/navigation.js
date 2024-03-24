@@ -1,17 +1,17 @@
 var tasks = {
-    "D": {
+    D: {
         1: "day",
         2: "hi",
     },
-    "W": {
+    W: {
         1: "week",
         2: "hi",
     },
-    "M": {
+    M: {
         1: "month",
         2: "hi",
     },
-    "Y": {
+    Y: {
         1: "year",
         2: "hi",
     },
@@ -31,11 +31,13 @@ var tasks = {
 
     function viewTaskOf(link) {
         const { [link.textContent]: currentTasks } = tasks;
-        Object.values(currentTasks).forEach(value => { Task.create(value) });
+        Object.values(currentTasks).forEach((value) => {
+            Task.create(value);
+        });
     }
 
     Task.viewCurrentTasks = function () {
         viewTaskOf(document.querySelector(".active"));
-    }
+    };
     window.Task = Task;
 })(window);
