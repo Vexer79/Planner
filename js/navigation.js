@@ -31,12 +31,11 @@ var tasks = {
 
     function viewTaskOf(link) {
         const { [link.textContent]: currentTasks } = tasks;
-        Object.keys(currentTasks).forEach(key => { Task.create(currentTasks[key]) });
+        Object.values(currentTasks).forEach(value => { Task.create(value) });
     }
 
-    Task.viewDailyTasks = function () {
-        let dailyLink = document.querySelector("ul li>a:first-child");
-        viewTaskOf(dailyLink);
+    Task.viewCurrentTasks = function () {
+        viewTaskOf(document.querySelector(".active"));
     }
     window.Task = Task;
 })(window);
