@@ -10,12 +10,12 @@
         }
     }
 
-    ajaxUtils.sendGetRequest = function (requestUrl, responseHandler) {
+    ajaxUtils.sendGetRequest = function (requestUrl, responseHandler, async) {
         let request = getRequestObject();
         request.onreadystatechange = function () {
             handleResponse(request, responseHandler);
         };
-        request.open("GET", requestUrl, true);
+        request.open("GET", requestUrl, async);
         request.send(null);
     };
 
