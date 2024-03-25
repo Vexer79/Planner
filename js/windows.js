@@ -3,6 +3,7 @@
     const wrapper = document.querySelector(".wrapper");
     const createTaskWindowTemplate = document.getElementById("create-task-window-template");
 
+    Windows.createTask = {};
     Windows.createTask.close = function () {
         wrapper.removeChild(document.querySelector(".create-task-window"));
     };
