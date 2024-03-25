@@ -2,26 +2,22 @@
     let DragAndDrop = {};
     const containers = document.querySelectorAll(".task-body");
 
-    function addTask(selected, container) {
-        const currentTaskSection = document.querySelector(".active").textContent;
-        const parentContainer = selected.parentElement;
-        return function () {
-            if (selected !== null) {
-                container.appendChild(selected);
-                Task.setCurrentTasksOfContainerToTasks(container, currentTaskSection);
-                Task.setCurrentTasksOfContainerToTasks(parentContainer, currentTaskSection);
-                selected = null;
-            }
-        };
-    }
-
     DragAndDrop.drag = function (event) {
         let selected = event.target;
+        const currentTaskSection = document.querySelector(".active").textContent;
+        const parentContainer = selected.parentElement;
         for (let container of containers) {
             container.addEventListener("dragover", function (event) {
                 event.preventDefault();
             });
-            container.addEventListener("drop", addTask(selected, container));
+            container.addEventListener("drop", function () {
+                if (selected !== null) {
+                    container.appendChild(selected);
+                    Task.setCurrentTasksOfContainerToTasks(container, currentTaskSection);
+                    Task.setCurrentTasksOfContainerToTasks(parentContainer, currentTaskSection);
+                    selected = null;
+                }
+            });
         }
     };
 
