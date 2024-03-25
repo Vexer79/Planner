@@ -31,7 +31,7 @@
         Task.getObjectReference = Parser.getObjectFromJSON(object);
     };
 
-    Task.setCurrentTasksOfContanerToTasks = function (container, currentTaskSection) {
+    Task.setCurrentTasksOfContainerToTasks = function (container, currentTaskSection) {
         const containerObject = {};
         for (let i = 1; i < container.children.length; i++) {
             containerObject[i] = container.children[i].innerText;

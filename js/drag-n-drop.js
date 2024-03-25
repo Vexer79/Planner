@@ -8,8 +8,8 @@
         return function () {
             if (selected !== null) {
                 container.appendChild(selected);
-                Task.setCurrentTasksOfContanerToTasks(container, currentTaskSection);
-                Task.setCurrentTasksOfContanerToTasks(parentContainer, currentTaskSection);
+                Task.setCurrentTasksOfContainerToTasks(container, currentTaskSection);
+                Task.setCurrentTasksOfContainerToTasks(parentContainer, currentTaskSection);
                 selected = null;
             }
         };
@@ -51,11 +51,11 @@
                                 document.body.style.overflow = "auto";
                                 selected.parentNode.style.overflow = "auto";
                                 dropContainer.appendChild(selected);
-                                Task.setCurrentTasksOfContanerToTasks(
+                                Task.setCurrentTasksOfContainerToTasks(
                                     dropContainer,
                                     currentTaskSection
                                 );
-                                Task.setCurrentTasksOfContanerToTasks(
+                                Task.setCurrentTasksOfContainerToTasks(
                                     parentContainer,
                                     currentTaskSection
                                 );
