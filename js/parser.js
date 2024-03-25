@@ -5,12 +5,5 @@
         return JSON.parse(json.response);
     };
 
-    let Tasks = {};
-    Tasks.setGlobalObject = function(object){
-        Tasks.getObjectReference = Parser.getObjectFromJSON(object);
-        console.log(Tasks.getObjectReference);
-    }
-
-    window.Tasks = Tasks;
-    window.Parser = Parser;
+    global.Parser = Parser;
 })(window);
