@@ -30,7 +30,7 @@
             containerObject[i] = container.children[i].innerText;
         }
         const containerId = getId(container);
-        tasks[currentTaskSection][containerId] = containerObject;
+        Tasks.getObjectReference[currentTaskSection][containerId] = containerObject;
         return containerObject;
     }
 
