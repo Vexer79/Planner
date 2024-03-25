@@ -1,5 +1,5 @@
-(function (window) {
-    let Task = window.Task;
+(function (global) {
+    let Task = global.Task;
     let links = document.querySelectorAll("ul li>a");
     for (let link of links) {
         link.addEventListener("click", function () {
@@ -22,5 +22,5 @@
     Task.viewCurrentTasks = function () {
         viewTask(document.querySelector(".active"));
     };
-    window.Task = Task;
+    global.Task = Task;
 })(window);

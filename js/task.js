@@ -1,4 +1,4 @@
-(function (window) {
+(function (global) {
     let Task = {};
     const containers = document.querySelectorAll(".task-body");
     const notStartedTasksTemplate = document.getElementById("not-started-tasks-template");
@@ -72,5 +72,5 @@
         }
     };
 
-    window.Task = Task;
+    global.Task = Task;
 })(window);
