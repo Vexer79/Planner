@@ -6,12 +6,12 @@
             document.querySelector(".active").classList.remove("active");
             link.classList.add("active");
             Task.clearAll();
-            viewTaskOf(link);
+            viewTask(link);
         });
     }
 
-    function viewTaskOf(link) {
-        const { [link.textContent]: currentTasks } = Tasks.getObjectReference;
+    function viewTask(link) {
+        const { [link.textContent]: currentTasks } = Task.getObjectReference;
         Object.entries(currentTasks).forEach(([key, value]) => {
             Object.values(value).forEach((taskContent) => {
                 Task.create[key](taskContent);
@@ -20,7 +20,7 @@
     }
 
     Task.viewCurrentTasks = function () {
-        viewTaskOf(document.querySelector(".active"));
+        viewTask(document.querySelector(".active"));
     };
     window.Task = Task;
 })(window);
