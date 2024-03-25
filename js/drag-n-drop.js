@@ -27,9 +27,11 @@
 
     DragAndDrop.touch = function (event) {
         let selected = event.target;
+        const currentTaskSection = document.querySelector(".active").textContent;
         if (selected.className !== "task") {
             selected = selected.parentElement;
         }
+        const parentContainer = selected.parentElement;
         document.body.style.overflow = "hidden";
         selected.parentNode.style.overflow = "hidden";
         for (let dragContainer of containers) {
@@ -49,6 +51,14 @@
                                 document.body.style.overflow = "auto";
                                 selected.parentNode.style.overflow = "auto";
                                 dropContainer.appendChild(selected);
+                                Task.setCurrentTasksOfContanerToTasks(
+                                    dropContainer,
+                                    currentTaskSection
+                                );
+                                Task.setCurrentTasksOfContanerToTasks(
+                                    parentContainer,
+                                    currentTaskSection
+                                );
                                 selected = null;
                             }
                         }
