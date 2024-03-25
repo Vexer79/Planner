@@ -45,9 +45,12 @@
                             pos.left < lastPosX &&
                             lastPosX < pos.right
                         ) {
-                            document.body.style.overflow = "auto";
-                            selected.parentNode.style.overflow = "auto";
-                            addTask(selected, dropContainer)();
+                            if (selected !== null) {
+                                document.body.style.overflow = "auto";
+                                selected.parentNode.style.overflow = "auto";
+                                dropContainer.appendChild(selected);
+                                selected = null;
+                            }
                         }
                     }
                 }
