@@ -6,8 +6,8 @@
     };
 
     let Tasks = {};
-    Tasks.setGlobalObject = function(json){
-        Tasks.getObjectReference = Parser.getObjectFromJSON(json);
+    Tasks.setGlobalObject = function(object){
+        Tasks.getObjectReference = Parser.getObjectFromJSON(object);
         console.log(Tasks.getObjectReference);
     }
 
