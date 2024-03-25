@@ -1,4 +1,4 @@
-(function (window) {
+(function (global) {
     const Windows = {};
     const wrapper = document.querySelector(".wrapper");
     const createTaskWindowTemplate = document.getElementById("create-task-window-template");
@@ -22,5 +22,5 @@
         closeButton.addEventListener("click", Windows.createTask.close);
     };
 
-    window.Windows = Windows;
+    global.Windows = Windows;
 })(window);
