@@ -24,7 +24,7 @@
         }
     }
 
-    function setCurrentTasksOfContanerToTasks(container, currentTaskSection){
+    function setCurrentTasksOfContanerToTasks(container, currentTaskSection) {
         const containerObject = {};
         for (let i = 1; i < container.children.length; i++) {
             containerObject[i] = container.children[i].innerText;
@@ -44,9 +44,11 @@
 
     function touch(event) {
         let selected = event.target;
+        const currentTaskSection = document.querySelector(".active").textContent;
         if (selected.className !== "task") {
             selected = selected.parentElement;
         }
+        const parentContainer = selected.parentElement;
         document.body.style.overflow = "hidden";
         selected.parentNode.style.overflow = "hidden";
         for (let dragContainer of containers) {
@@ -66,6 +68,11 @@
                                 document.body.style.overflow = "auto";
                                 selected.parentNode.style.overflow = "auto";
                                 dropContainer.appendChild(selected);
+                                setCurrentTasksOfContanerToTasks(dropContainer, currentTaskSection);
+                                setCurrentTasksOfContanerToTasks(
+                                    parentContainer,
+                                    currentTaskSection
+                                );
                                 selected = null;
                             }
                         }
