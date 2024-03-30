@@ -17,7 +17,7 @@
   },
   "homepage": "https://github.com/Vexer79/Planner#readme",
   "dependencies": {
+    "express": "^4.19.2",
     "sortablejs": "^1.15.2"
-  },
-  "devDependencies": {}
+  }
 }
