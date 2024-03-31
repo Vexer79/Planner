@@ -1,3 +1,3 @@
 (function (){
-    ajaxUtils.sendGetRequest("http://localhost:5500/tasks", Task.setGlobalObject, false);
+    ajaxUtils.sendGetRequest("http://localhost:3000/tasks", Task.setGlobalObject, false);
 })();
