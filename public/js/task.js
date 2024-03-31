@@ -21,8 +21,6 @@
         if (taskContent) {
             const task = template.content.cloneNode(true);
             task.children[0].children[0].textContent = taskContent;
-            task.children[0].addEventListener("dragstart", DragAndDrop.drag);
-            task.children[0].addEventListener("touchstart", DragAndDrop.touch);
             container.appendChild(task);
         }
     }
