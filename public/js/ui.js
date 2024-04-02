@@ -1,5 +1,8 @@
 (function (global) {
     const UI = {};
+    UI.createTask = {};
+    UI.settings = {};
+    UI.viewTasks = {};
     const wrapper = document.querySelector(".wrapper");
     const links = document.querySelectorAll("ul li>a");
     const createTaskWindowTemplate = document.getElementById("create-task-window-template");
@@ -14,8 +17,6 @@
             UI.viewTasks.viewByLink(link);
         });
     }
-
-    UI.createTask = {};
 
     UI.createTask.open = function () {
         if (!activeWindow) {
@@ -39,8 +40,6 @@
         activeWindow = false;
     };
 
-    UI.settings = {};
-
     UI.settings.open = function () {
         if (!activeWindow) {
             wrapper.appendChild(settingsWindowTemplate.content.cloneNode(true));
@@ -54,8 +53,6 @@
         wrapper.removeChild(document.querySelector(".settings-window"));
         activeWindow = false;
     };
-
-    UI.viewTasks = {};
 
     UI.viewTasks.viewCurrent = function () {
         UI.viewTasks.viewByLink(document.querySelector(".active"));
