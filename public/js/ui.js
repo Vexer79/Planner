@@ -3,6 +3,8 @@
     const wrapper = document.querySelector(".wrapper");
     const links = document.querySelectorAll("ul li>a");
     const createTaskWindowTemplate = document.getElementById("create-task-window-template");
+    const settingsWindowTemplate = document.getElementById("settings-window-template");
+    let active = false;
 
     for (const link of links) {
         link.addEventListener("click", function () {
@@ -16,21 +18,41 @@
     UI.createTask = {};
 
     UI.createTask.open = function () {
-        wrapper.appendChild(createTaskWindowTemplate.content.cloneNode(true));
+        if (!active) {
+            wrapper.appendChild(createTaskWindowTemplate.content.cloneNode(true));
+            active = true;
 
-        const createTaskButton = document.getElementById("create-task-button");
-        const closeButton = document.getElementById("close-window-button");
-        const taskInput = document.getElementById("input-task-content");
+            const createTaskButton = document.getElementById("create-task-button");
+            const closeButton = document.getElementById("close-window-button");
+            const taskInput = document.getElementById("input-task-content");
 
-        taskInput.addEventListener("keyup", function (event) {
-            event.key === "Enter" && Task.createUsingInterface();
-        });
-        createTaskButton.addEventListener("click", Task.createUsingInterface);
-        closeButton.addEventListener("click", UI.createTask.close);
+            taskInput.addEventListener("keyup", function (event) {
+                event.key === "Enter" && Task.createUsingInterface();
+            });
+            createTaskButton.addEventListener("click", Task.createUsingInterface);
+            closeButton.addEventListener("click", UI.createTask.close);
+        }
     };
 
     UI.createTask.close = function () {
         wrapper.removeChild(document.querySelector(".create-task-window"));
+        active = false;
+    };
+
+    UI.settings = {};
+
+    UI.settings.open = function () {
+        if (!active) {
+            wrapper.appendChild(settingsWindowTemplate.content.cloneNode(true));
+            active = true;
+            const closeButton = document.getElementById("close-window-button");
+            closeButton.addEventListener("click", UI.settings.close);
+        }
+    };
+
+    UI.settings.close = function () {
+        wrapper.removeChild(document.querySelector(".settings-window"));
+        active = false;
     };
 
     UI.viewTasks = {};
