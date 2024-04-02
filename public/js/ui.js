@@ -4,7 +4,7 @@
     const links = document.querySelectorAll("ul li>a");
     const createTaskWindowTemplate = document.getElementById("create-task-window-template");
     const settingsWindowTemplate = document.getElementById("settings-window-template");
-    let active = false;
+    let activeWindow = false;
 
     for (const link of links) {
         link.addEventListener("click", function () {
@@ -18,9 +18,9 @@
     UI.createTask = {};
 
     UI.createTask.open = function () {
-        if (!active) {
+        if (!activeWindow) {
             wrapper.appendChild(createTaskWindowTemplate.content.cloneNode(true));
-            active = true;
+            activeWindow = true;
 
             const createTaskButton = document.getElementById("create-task-button");
             const closeButton = document.getElementById("close-window-button");
@@ -36,15 +36,15 @@
 
     UI.createTask.close = function () {
         wrapper.removeChild(document.querySelector(".create-task-window"));
-        active = false;
+        activeWindow = false;
     };
 
     UI.settings = {};
 
     UI.settings.open = function () {
-        if (!active) {
+        if (!activeWindow) {
             wrapper.appendChild(settingsWindowTemplate.content.cloneNode(true));
-            active = true;
+            activeWindow = true;
             const closeButton = document.getElementById("close-window-button");
             closeButton.addEventListener("click", UI.settings.close);
         }
@@ -52,7 +52,7 @@
 
     UI.settings.close = function () {
         wrapper.removeChild(document.querySelector(".settings-window"));
-        active = false;
+        activeWindow = false;
     };
 
     UI.viewTasks = {};
