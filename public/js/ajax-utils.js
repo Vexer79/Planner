@@ -31,6 +31,7 @@
             handleResponse(request, responseHandler);
         };
         request.open("POST", requestUrl, true);
+        request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
         request.send(requestBody);
     };
 
