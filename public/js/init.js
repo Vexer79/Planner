@@ -3,5 +3,5 @@
     const burgerMenuButton = document.getElementById("open-settings-window-button");
     addTaskMenuButton.addEventListener("click", UI.createTask.open);
     burgerMenuButton.addEventListener("click", UI.settings.open);
-    UI.viewTasks.viewCurrent();
+    requests.getDayTasks();
 })();
