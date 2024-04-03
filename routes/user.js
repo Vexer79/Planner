@@ -3,7 +3,7 @@ const path = require("path");
 const router = express.Router();
 
 const taskController = require("../controllers/taskController");
-const viewController = require("../controllers/viewController");
+const viewController = require("../controllers/pageController");
 
 router.get("/day", taskController.getDayTasks);
 router.get("/week", taskController.getWeekTasks);
