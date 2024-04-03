@@ -17,27 +17,15 @@
         },
     };
 
-    function createTask(template, container, taskContent) {
-        if (taskContent) {
-            const task = template.content.cloneNode(true);
-            task.children[0].children[0].textContent = taskContent;
-            container.appendChild(task);
+    function createTask(template, container, task) {
+        if (task) {
+            const taskNode = document.createElement("div");
+            taskNode.classList.add("task");
+            taskNode.style.backgroundColor = task.colour;
+            taskNode.innerHTML = `<p>${task.content}</p>`;
+            container.appendChild(taskNode);
         }
     }
-
-    Task.setGlobalObject = function (object) {
-        Task.getObjectReference = Parser.getObjectFromJSON(object);
-    };
-
-    Task.setCurrentTasksOfContainerToTasks = function (container, currentTaskSection) {
-        const containerObject = {};
-        for (let i = 1; i < container.children.length; i++) {
-            containerObject[i] = container.children[i].innerText;
-        }
-        const containerId = getContainerId(container);
-        Task.getObjectReference[currentTaskSection][containerId] = containerObject;
-        return containerObject;
-    };
 
     function getContainerId(element) {
         return element.id
@@ -58,7 +46,7 @@
                 taskInput.value = "";
             };
         })();
-        Task.create.notStarted(taskContent.get());
+        requests.createTask(taskContent.get());
         taskContent.clear();
     };
 
