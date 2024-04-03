@@ -4,18 +4,33 @@
     UI.settings = {};
     UI.viewTasks = {};
     const wrapper = document.querySelector(".wrapper");
-    const links = document.querySelectorAll("ul li>a");
     const createTaskWindowTemplate = document.getElementById("create-task-window-template");
     const settingsWindowTemplate = document.getElementById("settings-window-template");
     let activeWindow = false;
 
-    for (const link of links) {
-        link.addEventListener("click", function () {
-            document.querySelector(".active").classList.remove("active");
-            link.classList.add("active");
-            Task.clearAll();
-            UI.viewTasks.viewByLink(link);
-        });
+    const dayTasks = document.getElementById("day-tasks");
+    const weekTasks = document.getElementById("week-tasks");
+    const monthTasks = document.getElementById("month-tasks");
+    const yearTasks = document.getElementById("year-tasks");
+
+    dayTasks.addEventListener("click", viewTask(requests.getDayTasks));
+    weekTasks.addEventListener("click", viewTask(requests.getWeekTasks));
+    monthTasks.addEventListener("click", viewTask(requests.getMonthTasks));
+    yearTasks.addEventListener("click", viewTask(requests.getYearTasks));
+
+    function setActive(link) {
+        document.querySelector(".active").classList.remove("active");
+        link.classList.add("active");
+    }
+
+    function viewTask(callback) {
+        return function (event) {
+            if (document.querySelector(".active") !== this) {
+                setActive(this);
+                Task.clearAll();
+                callback();
+            }
+        };
     }
 
     UI.createTask.open = function () {
@@ -52,19 +67,6 @@
     UI.settings.close = function () {
         wrapper.removeChild(document.querySelector(".settings-window"));
         activeWindow = false;
-    };
-
-    UI.viewTasks.viewCurrent = function () {
-        UI.viewTasks.viewByLink(document.querySelector(".active"));
-    };
-
-    UI.viewTasks.viewByLink = function (link) {
-        const { [link.textContent]: currentTasks } = Task.getObjectReference;
-        Object.entries(currentTasks).forEach(([key, value]) => {
-            Object.values(value).forEach((taskContent) => {
-                Task.create[key](taskContent);
-            });
-        });
     };
 
     global.UI = UI;
