@@ -9,8 +9,9 @@ router.get("/day", taskController.getDayTasks);
 router.get("/week", taskController.getWeekTasks);
 router.get("/month", taskController.getMonthTasks);
 router.get("/year", taskController.getYearTasks);
+router.get("/test", taskController.getTestTasks);
 
-router.post("/day", (req, res) => {});
+router.post("/day", taskController.saveDayTasks);
 router.post("/week", (req, res) => {});
 router.post("/month", (req, res) => {});
 router.post("/year", (req, res) => {});
