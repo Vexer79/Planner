@@ -3,6 +3,7 @@ const path = require("path");
 const router = express.Router();
 
 const taskController = require("../controllers/taskController");
+const viewController = require("../controllers/viewController");
 
 router.get("/day", taskController.getDayTasks);
 router.get("/week", taskController.getWeekTasks);
@@ -14,8 +15,6 @@ router.post("/week", (req, res) => {});
 router.post("/month", (req, res) => {});
 router.post("/year", (req, res) => {});
 
-router.get("/", (req, res) => {
-    res.type(".html").sendFile(path.join(__dirname, "public", "index.html"));
-});
+router.get("/", viewController.getIndexPage);
 
 module.exports = router;
