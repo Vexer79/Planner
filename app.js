@@ -3,10 +3,12 @@ const express = require("express");
 const app = express();
 const port =  process.env.PORT || 3000;
 
+const rootDirectory = require("./util/path");
+
 const errorController = require("./controllers/errorController");
 const userRoutes = require("./routes/user");
 
-app.use(express.static(path.join(__dirname, "public")));
+app.use(express.static(path.join(rootDirectory, "public")));
 
 app.use(userRoutes);
 
