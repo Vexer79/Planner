@@ -16,9 +16,20 @@
         }
     };
 
-    requests.createTask = function () {
-        //make request to create task
-        //on complete -> create task
+    requests.createTask = function (content) {
+        ajaxUtils.sendPostRequest(
+            "http://localhost:3000/day",
+            JSON.stringify({
+                content: content,
+                colour: "Red",
+                startTime: "now",
+                completeTime: "tomorrow",
+                notification: true,
+                container: null,
+                index: 0,
+            }),
+            requests.getDayTasks
+        );
     };
 
     requests.getDayTasks = function () {
@@ -35,9 +46,10 @@
     };
     function callback(response) {
         const responseObject = Parser.getObjectFromJSON(response);
+        console.log(responseObject);
         Object.entries(responseObject).forEach(([key, value]) => {
-            Object.values(value).forEach((taskContent) => {
-                Task.create[key](taskContent);
+            Object.values(value).forEach((task) => {
+                Task.create[key](task);
             });
         });
     }
