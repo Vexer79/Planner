@@ -14,6 +14,4 @@ app.use(userRoutes);
 
 app.use("/", errorController.get404Page);
 
-app.listen(port, () => {
-    console.log(`Example app listening on port ${port}`);
-});
+app.listen(port);
