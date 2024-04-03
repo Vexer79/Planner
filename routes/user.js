@@ -2,22 +2,12 @@ const express = require("express");
 const path = require("path");
 const router = express.Router();
 
-router.get("/day", (req, res) => {
-    res.json({
-        notStarted: { 1: "day", 2: "hi" },
-        inProcess: { 1: "testInProcess" },
-        completed: { 1: "test" },
-    });
-});
-router.get("/week", (req, res) => {
-    res.json({ notStarted: { 1: "week", 2: "hi" }, inProcess: {}, completed: {} });
-});
-router.get("/month", (req, res) => {
-    res.json({ notStarted: { 1: "month", 2: "hi" }, inProcess: {}, completed: {} });
-});
-router.get("/year", (req, res) => {
-    res.json({ notStarted: { 1: "year", 2: "hi" }, inProcess: {}, completed: {} });
-});
+const taskController = require("../controllers/taskController");
+
+router.get("/day", taskController.getDayTasks);
+router.get("/week", taskController.getWeekTasks);
+router.get("/month", taskController.getMonthTasks);
+router.get("/year", taskController.getYearTasks);
 
 router.post("/day", (req, res) => {});
 router.post("/week", (req, res) => {});
