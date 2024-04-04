@@ -1,5 +1,8 @@
 const TaskModel = require("../models/task");
 
+exports.getDayTasks = (req, res, next) => {
+    res.json(TaskModel.fetchAll());
+};
 exports.getWeekTasks = (req, res, next) => {
     res.json({ notStarted: { 1: "week", 2: "hi" }, inProcess: {}, completed: {} });
 };
@@ -8,10 +11,6 @@ exports.getMonthTasks = (req, res, next) => {
 };
 exports.getYearTasks = (req, res, next) => {
     res.json({ notStarted: { 1: "year", 2: "hi" }, inProcess: {}, completed: {} });
-};
-
-exports.getDayTasks = (req, res, next) => {
-    res.json(TaskModel.fetchAll());
 };
 
 exports.saveDayTasks = (req, res, next) => {
