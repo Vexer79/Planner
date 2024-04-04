@@ -17,19 +17,21 @@
     };
 
     requests.createTask = function (content) {
-        ajaxUtils.sendPostRequest(
-            "http://localhost:3000/day",
-            JSON.stringify({
-                content: content,
-                colour: "Red",
-                startTime: "now",
-                completeTime: "tomorrow",
-                notification: true,
-                container: null,
-                index: 0,
-            }),
-            requests.getDayTasks
-        );
+        const data = new URLSearchParams();
+        data.append("content", content);
+        data.append("colour", "Red");
+        data.append("startTime", "now");
+        data.append("completeTime", "tomorrow");
+        data.append("notifications", "true");
+        data.append("container", "null");
+        data.append("index", "0");
+        fetch("http://localhost:3000/day", {
+            method: "POST",
+            headers: {
+                "Content-type": "application/x-www-form-urlencoded",
+            },
+            body: data,
+        }).then(requests.getDayTasks);
     };
 
     requests.getDayTasks = function () {
@@ -47,6 +49,7 @@
     function callback(response) {
         const responseObject = Parser.getObjectFromJSON(response);
         console.log(responseObject);
+        Task.clearAll();
         Object.entries(responseObject).forEach(([key, value]) => {
             Object.values(value).forEach((task) => {
                 Task.create[key](task);
