@@ -39,11 +39,17 @@
         taskContent.clear();
     };
 
+    Task.setFromObject = function (object) {
+        Object.entries(object).forEach(([key, value]) => {
+            Object.values(value).forEach((task) => {
+                Task.create[key](task);
+            });
+        });
+    };
+
     Task.clearAll = function () {
         for (let container of containers) {
-            let template = container.children[0];
             container.innerHTML = "";
-            container.appendChild(template);
         }
     };
 
