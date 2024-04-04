@@ -16,23 +16,25 @@
         }
     };
 
-    requests.createTask = function (content) {
-        ajaxUtils.sendFetchRequest(
-            "http://localhost:3000/day",
-            "POST",
-            {
-                "Content-type": "application/x-www-form-urlencoded",
-            },
-            {
-                content: content,
-                colour: "Red",
-                startTime: "now",
-                completeTime: "tomorrow",
-                notifications: true,
-                container: null,
-                index: 0,
-            }
-        ).then(Task.create.notStarted({content, colour: "Red"}));
+    requests.createTask = function (task) {
+        ajaxUtils
+            .sendFetchRequest(
+                "http://localhost:3000/day",
+                "POST",
+                {
+                    "Content-type": "application/x-www-form-urlencoded",
+                },
+                {
+                    content: task.content,
+                    colour: task.colour,
+                    startTime: "now",
+                    completeTime: "tomorrow",
+                    notifications: true,
+                    container: null,
+                    index: 0,
+                }
+            )
+            .then(Task.create.notStarted({ content: task.content, colour: task.colour }));
     };
 
     requests.getDayTasks = function () {

@@ -25,18 +25,21 @@
     }
 
     Task.createUsingInterface = function () {
-        const taskContent = new (function () {
+        const taskObject = new (function () {
             const taskInput = document.getElementById("input-task-content");
+            const taskColour = document.getElementById("task-colour");
             this.get = function () {
-                return taskInput.value;
+                return { content: taskInput.value, colour: taskColour.value };
             };
 
             this.clear = function () {
                 taskInput.value = "";
             };
         })();
-        requests.createTask(taskContent.get());
-        taskContent.clear();
+        if (taskObject.get().content) {
+            requests.createTask(taskObject.get());
+            taskObject.clear();
+        }
     };
 
     Task.setFromObject = function (object) {
