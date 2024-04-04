@@ -1,106 +1,91 @@
 <!DOCTYPE html>
 <html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Planner</title>
+        <link rel="stylesheet" href="css/style.css" />
+    </head>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Planner</title>
-    <link rel="stylesheet" href="css/style.css">
-</head>
-
-<body>
-    <div class="wrapper">
-        <nav>
-            <div class="menu-icon-container">
-                <div class="menu-icon" id="open-settings-window-button">
-                    <span></span>
+    <body>
+        <div class="wrapper">
+            <nav>
+                <div class="menu-icon-container">
+                    <div class="menu-icon" id="open-settings-window-button">
+                        <span></span>
+                    </div>
                 </div>
-            </div>
-            <ul>
-                <li><a id="day-tasks" class="active">D</a></li>
-                <li><a id="week-tasks">W</a></li>
-                <li><a id="month-tasks">M</a></li>
-                <li><a id="year-tasks">Y</a></li>
-            </ul>
-            <div class="functions-container">
-                <div class="open-create-task-window-container">
-                    <button id="open-create-task-window-button"></button>
+                <ul>
+                    <li><a id="day-tasks" class="active">D</a></li>
+                    <li><a id="week-tasks">W</a></li>
+                    <li><a id="month-tasks">M</a></li>
+                    <li><a id="year-tasks">Y</a></li>
+                </ul>
+                <div class="functions-container">
+                    <div class="open-create-task-window-container">
+                        <button id="open-create-task-window-button"></button>
+                    </div>
                 </div>
-            </div>
-        </nav>
-        <main>
-            <div class="content-container">
-                <div class="left-container">
-                    <div class="task-container">
-                        <div class="not-started-tasks-container">
-                            <div class="task-header">
-                                <p>Not started</p>
+            </nav>
+            <main>
+                <div class="content-container">
+                    <div class="left-container">
+                        <div class="task-container">
+                            <div class="not-started-tasks-container">
+                                <div class="task-header">
+                                    <p>Not started</p>
+                                </div>
+                                <div class="task-body" id="not-started-tasks-container"></div>
                             </div>
-                            <div class="task-body" id="not-started-tasks-container">
-                                <template id="not-started-tasks-template">
-                                    <div class="task">
-                                        <p>Task 1</p>
-                                    </div>
-                                </template>
+                            <div class="in-process-tasks-container">
+                                <div class="task-header">
+                                    <p>In process</p>
+                                </div>
+                                <div class="task-body" id="in-process-tasks-container"></div>
                             </div>
-                        </div>
-                        <div class="in-process-tasks-container">
-                            <div class="task-header">
-                                <p>In process</p>
-                            </div>
-                            <div class="task-body" id="in-process-tasks-container">
-                                <template id="in-process-tasks-template">
-                                    <div class="task">
-                                        <p>Task 1</p>
-                                    </div>
-                                </template>
-                            </div>
-                        </div>
-                        <div class="completed-tasks-container">
-                            <div class="task-header">
-                                <p>Completed</p>
-                            </div>
-                            <div class="task-body" id="completed-tasks-container">
-                                <template id="completed-tasks-template">
-                                    <div class="task">
-                                        <p>Task 1</p>
-                                    </div>
-                                </template>
+                            <div class="completed-tasks-container">
+                                <div class="task-header">
+                                    <p>Completed</p>
+                                </div>
+                                <div class="task-body" id="completed-tasks-container"></div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="right-container">
-                    <div class="notes-header">
-                        <p>Notes</p>
+                    <div class="right-container">
+                        <div class="notes-header">
+                            <p>Notes</p>
+                        </div>
+                        <div class="notes-content">
+                            <textarea id="notes-container"></textarea>
+                        </div>
                     </div>
-                    <div class="notes-content">
-                        <textarea id="notes-container"></textarea>
-                    </div>
                 </div>
-            </div>
-        </main>
-    </div>
-    <template id="create-task-window-template">
-        <div class="create-task-window">
-            <button id="close-window-button"></button>
-            <input type="text" id="input-task-content" placeholder="Enter your task..." autocomplete="off">
-            <button id="create-task-button">Add task</button>
+            </main>
         </div>
-    </template>
-    <template id="settings-window-template">
-        <div class="settings-window">
-            <button id="close-window-button"></button>
-        </div>
-    </template>
-    <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
-    <script src="js/ajax-utils.js"></script>
-    <script src="js/parser.js"></script>
-    <script src="js/task.js"></script>
-    <script src="js/HTTP-client.js"></script>
-    <script src="js/drag-n-drop.js"></script>
-    <script src="js/ui.js"></script>
-    <script src="js/init.js"></script>
-</body>
-
+        <template id="create-task-window-template">
+            <div class="create-task-window">
+                <button id="close-window-button"></button>
+                <input
+                    type="text"
+                    id="input-task-content"
+                    placeholder="Enter your task..."
+                    autocomplete="off"
+                />
+                <button id="create-task-button">Add task</button>
+            </div>
+        </template>
+        <template id="settings-window-template">
+            <div class="settings-window">
+                <button id="close-window-button"></button>
+            </div>
+        </template>
+        <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
+        <script src="js/ajax-utils.js"></script>
+        <script src="js/parser.js"></script>
+        <script src="js/task.js"></script>
+        <script src="js/HTTP-client.js"></script>
+        <script src="js/drag-n-drop.js"></script>
+        <script src="js/ui.js"></script>
+        <script src="js/init.js"></script>
+    </body>
 </html>
