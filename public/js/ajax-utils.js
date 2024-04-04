@@ -31,9 +31,20 @@
             handleResponse(request, responseHandler);
         };
         request.open("POST", requestUrl, true);
-        request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
         request.send(requestBody);
     };
+
+    ajaxUtils.sendFetchRequest = function (requestUrl, method, headers, body) {
+        return fetch(requestUrl, { method, headers, body: convertObjectToForm(body) });
+    };
+
+    function convertObjectToForm(object) {
+        const data = new URLSearchParams();
+        Object.entries(object).forEach(([key, value]) => {
+            data.append(key, value);
+        });
+        return data;
+    }
 
     global.ajaxUtils = ajaxUtils;
 })(window);
