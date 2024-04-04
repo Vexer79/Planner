@@ -1,23 +1,20 @@
 (function (global) {
     let Task = {};
     const containers = document.querySelectorAll(".task-body");
-    const notStartedTasksTemplate = document.getElementById("not-started-tasks-template");
-    const inProcessTasksTemplate = document.getElementById("in-process-tasks-template");
-    const completedTasksTemplate = document.getElementById("completed-tasks-template");
 
     Task.create = {
         notStarted: function (taskContent) {
-            createTask(notStartedTasksTemplate, containers[0], taskContent);
+            createTask(containers[0], taskContent);
         },
         inProcess: function (taskContent) {
-            createTask(inProcessTasksTemplate, containers[1], taskContent);
+            createTask(containers[1], taskContent);
         },
         completed: function (taskContent) {
-            createTask(completedTasksTemplate, containers[2], taskContent);
+            createTask(containers[2], taskContent);
         },
     };
 
-    function createTask(template, container, task) {
+    function createTask(container, task) {
         if (task) {
             const taskNode = document.createElement("div");
             taskNode.classList.add("task");
@@ -25,14 +22,6 @@
             taskNode.innerHTML = `<p>${task.content}</p>`;
             container.appendChild(taskNode);
         }
-    }
-
-    function getContainerId(element) {
-        return element.id
-            .replace("-tasks-container", "")
-            .split("-")
-            .join(" ")
-            .replace(/\s\w/, (symb) => symb.trim().toUpperCase());
     }
 
     Task.createUsingInterface = function () {
