@@ -1,12 +1,5 @@
 const TaskModel = require("../models/task");
 
-exports.getTestTasks = (req, res, next) => {
-    res.json({
-        notStarted: { 1: "day", 2: "hi" },
-        inProcess: { 1: "testInProcess" },
-        completed: { 1: "test" },
-    });
-};
 exports.getWeekTasks = (req, res, next) => {
     res.json({ notStarted: { 1: "week", 2: "hi" }, inProcess: {}, completed: {} });
 };
