@@ -1,12 +1,13 @@
 const path = require("path");
+const ConnectionToMongoDB = require("./util/repository").ConnectionToMongoDB;
 
 const express = require("express");
-const bodyParser = require('body-parser');
+const bodyParser = require("body-parser");
 
 const errorController = require("./controllers/errorController");
 
 const app = express();
-const port =  process.env.PORT || 3000;
+const port = process.env.PORT || 3000;
 
 const rootDirectory = require("./util/path");
 const userRoutes = require("./routes/user");
@@ -18,4 +19,6 @@ app.use(userRoutes);
 
 app.use("/", errorController.get404Page);
 
-app.listen(port);
+ConnectionToMongoDB(() => {
+    app.listen(port);
+});
