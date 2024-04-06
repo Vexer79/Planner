@@ -1,9 +1,5 @@
 const getDb = require("../util/repository").getDb;
 
-const notStartedTasks = [];
-const inProcessTasks = [];
-const completedTasks = [];
-
 module.exports = class Task {
     constructor(content, colour, startTime, completeTime, notifications, container, index) {
         this.content = content;
@@ -16,14 +12,20 @@ module.exports = class Task {
     }
 
     save() {
+        const db = getDb();
+        db.collection("users")
+            .insertOne(this)
+            .then((result) => {
+                console.log(result);
+            })
+            .catch((error) => {
+                console.log(error);
+            });
         notStartedTasks.push(this);
     }
 
     static fetchAll() {
-        return {
-            notStarted: { ...notStartedTasks },
-            inProcess: { ...inProcessTasks },
-            completed: { ...completedTasks },
-        };
+        const db = getDb();
+        return db.collection("users").find().toArray();
     }
 };

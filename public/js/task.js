@@ -43,10 +43,8 @@
     };
 
     Task.setFromObject = function (object) {
-        Object.entries(object).forEach(([key, value]) => {
-            Object.values(value).forEach((task) => {
-                Task.create[key](task);
-            });
+        Object.values(object).forEach((task) => {
+            Task.create.notStarted(task);
         });
     };
 

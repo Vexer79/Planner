@@ -1,7 +1,9 @@
 const Task = require("../models/task");
 
 exports.getDayTasks = (req, res, next) => {
-    res.json(Task.fetchAll());
+    Task.fetchAll().then((result)=>{
+        res.json(result);
+    })
 };
 exports.getWeekTasks = (req, res, next) => {
     res.json({ notStarted: { 1: "week", 2: "hi" }, inProcess: {}, completed: {} });
