@@ -2,7 +2,6 @@
     const UI = {};
     UI.createTask = {};
     UI.settings = {};
-    UI.viewTasks = {};
     let activeWindow = false;
 
     const wrapper = document.querySelector(".wrapper");
@@ -14,24 +13,14 @@
     const monthTasks = document.getElementById("month-tasks");
     const yearTasks = document.getElementById("year-tasks");
 
-    dayTasks.addEventListener("click", viewTask(requests.getDayTasks));
-    weekTasks.addEventListener("click", viewTask(requests.getWeekTasks));
-    monthTasks.addEventListener("click", viewTask(requests.getMonthTasks));
-    yearTasks.addEventListener("click", viewTask(requests.getYearTasks));
+    dayTasks.addEventListener("click", setActiveLink);
+    weekTasks.addEventListener("click", setActiveLink);
+    monthTasks.addEventListener("click", setActiveLink);
+    yearTasks.addEventListener("click", setActiveLink);
 
-    function setActiveLink(link) {
+    function setActiveLink() {
         document.querySelector(".active").classList.remove("active");
-        link.classList.add("active");
-    }
-
-    function viewTask(callback) {
-        return function (event) {
-            if (document.querySelector(".active") !== this) {
-                setActiveLink(this);
-                Task.clearAll();
-                callback();
-            }
-        };
+        this.classList.add("active");
     }
 
     UI.createTask.open = function () {
@@ -42,11 +31,35 @@
             const createTaskButton = document.getElementById("create-task-button");
             const closeButton = document.getElementById("close-window-button");
             const taskInput = document.getElementById("input-task-content");
+            const taskColourInput = document.getElementById("task-colour");
 
             taskInput.addEventListener("keyup", function (event) {
-                event.key === "Enter" && Task.createUsingInterface();
+                if (event.key === "Enter") {
+                    Task.create({
+                        content: taskInput.value,
+                        colour: taskColourInput.value,
+                        startTime: "now",
+                        completeTime: "tomorrow",
+                        notifications: true,
+                        container: "not-started-tasks-container",
+                        index: document.getElementById("not-started-tasks-container").children
+                            .length,
+                        type: document.querySelector(".active").id.replace("-tasks", ""),
+                    });
+                }
             });
-            createTaskButton.addEventListener("click", Task.createUsingInterface);
+            createTaskButton.addEventListener("click", (event) => {
+                Task.create({
+                    content: taskInput.value,
+                    colour: taskColourInput.value,
+                    startTime: "now",
+                    completeTime: "tomorrow",
+                    notifications: true,
+                    container: "not-started-tasks-container",
+                    index: document.getElementById("not-started-tasks-container").children.length,
+                    type: document.querySelector(".active").id.replace("-tasks", ""),
+                });
+            });
             closeButton.addEventListener("click", UI.createTask.close);
         }
     };
