@@ -19,7 +19,7 @@
     requests.createTask = function (task) {
         ajaxUtils
             .sendFetchRequest(
-                "http://localhost:3000/day",
+                "/day",
                 "POST",
                 {
                     "Content-type": "application/x-www-form-urlencoded",
@@ -30,16 +30,16 @@
     };
 
     requests.getDayTasks = function (callback) {
-        ajaxUtils.sendGetRequest("http://localhost:3000/day", callback, true);
+        ajaxUtils.sendGetRequest("/day", callback, true);
     };
     requests.getWeekTasks = function (callback) {
-        ajaxUtils.sendGetRequest("http://localhost:3000/week", callback, true);
+        ajaxUtils.sendGetRequest("/week", callback, true);
     };
     requests.getMonthTasks = function (callback) {
-        ajaxUtils.sendGetRequest("http://localhost:3000/month", callback, true);
+        ajaxUtils.sendGetRequest("/month", callback, true);
     };
     requests.getYearTasks = function (callback) {
-        ajaxUtils.sendGetRequest("http://localhost:3000/year", callback, true);
+        ajaxUtils.sendGetRequest("/year", callback, true);
     };
 
     global.requests = requests;

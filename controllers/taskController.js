@@ -28,8 +28,8 @@ exports.saveDayTasks = (req, res, next) => {
         req.body.startTime,
         req.body.completeTime,
         req.body.notifications,
+        req.body.container,
         req.body.index,
-        req.body.type,
         req.body.type
     );
     task.save();
