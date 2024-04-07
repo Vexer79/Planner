@@ -3,14 +3,14 @@
     const containers = document.querySelectorAll(".task-body");
 
     Task.create = {
-        notStarted: function (taskContent) {
-            createTask(containers[0], taskContent);
+        notStarted: function (taskObject) {
+            createTask(containers[0], taskObject);
         },
-        inProcess: function (taskContent) {
-            createTask(containers[1], taskContent);
+        inProcess: function (taskObject) {
+            createTask(containers[1], taskObject);
         },
-        completed: function (taskContent) {
-            createTask(containers[2], taskContent);
+        completed: function (taskObject) {
+            createTask(containers[2], taskObject);
         },
     };
 
