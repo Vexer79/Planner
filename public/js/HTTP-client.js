@@ -24,37 +24,23 @@
                 {
                     "Content-type": "application/x-www-form-urlencoded",
                 },
-                {
-                    content: task.content,
-                    colour: task.colour,
-                    startTime: "now",
-                    completeTime: "tomorrow",
-                    notifications: true,
-                    container: null,
-                    index: 0,
-                }
+                task
             )
-            .then(Task.create.notStarted({ content: task.content, colour: task.colour }));
+            .catch((error) => console.log(error));
     };
 
-    requests.getDayTasks = function () {
+    requests.getDayTasks = function (callback) {
         ajaxUtils.sendGetRequest("http://localhost:3000/day", callback, true);
     };
-    requests.getWeekTasks = function () {
+    requests.getWeekTasks = function (callback) {
         ajaxUtils.sendGetRequest("http://localhost:3000/week", callback, true);
     };
-    requests.getMonthTasks = function () {
+    requests.getMonthTasks = function (callback) {
         ajaxUtils.sendGetRequest("http://localhost:3000/month", callback, true);
     };
-    requests.getYearTasks = function () {
+    requests.getYearTasks = function (callback) {
         ajaxUtils.sendGetRequest("http://localhost:3000/year", callback, true);
     };
-
-    function callback(response) {
-        const responseObject = Parser.getObjectFromJSON(response);
-        Task.clearAll();
-        Task.setFromObject(responseObject);
-    }
 
     global.requests = requests;
 })(window);
