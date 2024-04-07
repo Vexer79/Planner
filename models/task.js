@@ -24,8 +24,8 @@ module.exports = class Task {
             });
     }
 
-    static fetchAll() {
+    static fetch(filter) {
         const db = getDb();
-        return db.collection("users").find().toArray();
+        return db.collection("users").find(filter).toArray();
     }
 };
