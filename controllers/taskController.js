@@ -22,23 +22,15 @@ exports.getYearTasks = (req, res, next) => {
 };
 
 exports.saveDayTasks = (req, res, next) => {
-    const content = req.body.content;
-    const colour = req.body.colour;
-    const startTime = req.body.startTime;
-    const completeTime = req.body.completeTime;
-    const notifications = req.body.notifications;
-    const container = req.body.container;
-    const index = req.body.index;
-    const type = req.body.type;
     const task = new Task(
-        content,
-        colour,
-        startTime,
-        completeTime,
-        notifications,
-        container,
-        index,
-        type
+        req.body.content,
+        req.body.colour,
+        req.body.startTime,
+        req.body.completeTime,
+        req.body.notifications,
+        req.body.index,
+        req.body.type,
+        req.body.type
     );
     task.save();
     res.redirect("/");
