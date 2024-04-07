@@ -2,20 +2,32 @@
     let Task = {};
     const containers = document.querySelectorAll(".task-body");
 
-    Task.create = {
-        notStarted: function (taskObject) {
-            createTask(containers[0], taskObject);
-        },
-        inProcess: function (taskObject) {
-            createTask(containers[1], taskObject);
-        },
-        completed: function (taskObject) {
-            createTask(containers[2], taskObject);
-        },
-    };
+    const dayTasks = document.getElementById("day-tasks");
+    const weekTasks = document.getElementById("week-tasks");
+    const monthTasks = document.getElementById("month-tasks");
+    const yearTasks = document.getElementById("year-tasks");
 
-    function createTask(container, task) {
+    dayTasks.addEventListener("click", viewTasksIfActiveLink(requests.getDayTasks));
+    weekTasks.addEventListener("click", viewTasksIfActiveLink(requests.getWeekTasks));
+    monthTasks.addEventListener("click", viewTasksIfActiveLink(requests.getMonthTasks));
+    yearTasks.addEventListener("click", viewTasksIfActiveLink(requests.getYearTasks));
+
+    function viewTasksIfActiveLink(getTasks) {
+        return (event) => {
+            event = event || dayTasks;
+            if (document.querySelector(".active") !== this) {
+                Task.clearAll();
+                getTasks((response) => {
+                    const tasks = JSON.parse(response.response);
+                    Task.viewAll(tasks);
+                });
+            }
+        };
+    }
+
+    function viewTask(task) {
         if (task) {
+            const container = document.getElementById(task.container);
             const taskNode = document.createElement("div");
             taskNode.classList.add("task");
             taskNode.style.backgroundColor = task.colour;
@@ -24,28 +36,15 @@
         }
     }
 
-    Task.createUsingInterface = function () {
-        const taskObject = new (function () {
-            const taskInput = document.getElementById("input-task-content");
-            const taskColour = document.getElementById("task-colour");
-            this.get = function () {
-                return { content: taskInput.value, colour: taskColour.value };
-            };
-
-            this.clear = function () {
-                taskInput.value = "";
-            };
-        })();
-        if (taskObject.get().content) {
-            requests.createTask(taskObject.get());
-            taskObject.clear();
-        }
+    Task.viewAll = function (tasks) {
+        tasks.forEach((element) => {
+            viewTask(element);
+        });
     };
 
-    Task.setFromObject = function (object) {
-        Object.values(object).forEach((task) => {
-            Task.create.notStarted(task);
-        });
+    Task.create = function (task) {
+        requests.createTask(task);
+        viewTask(task);
     };
 
     Task.clearAll = function () {
@@ -53,6 +52,8 @@
             container.innerHTML = "";
         }
     };
+
+    viewTasksIfActiveLink(requests.getDayTasks)();
 
     global.Task = Task;
 })(window);
