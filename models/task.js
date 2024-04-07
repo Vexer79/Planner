@@ -1,7 +1,7 @@
 const getDb = require("../util/repository").getDb;
 
 module.exports = class Task {
-    constructor(content, colour, startTime, completeTime, notifications, container, index) {
+    constructor(content, colour, startTime, completeTime, notifications, container, index, type) {
         this.content = content;
         this.colour = colour;
         this.startTime = startTime;
@@ -9,6 +9,7 @@ module.exports = class Task {
         this.notifications = notifications;
         this.container = container;
         this.index = index;
+        this.type = type;
     }
 
     save() {
