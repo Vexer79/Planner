@@ -21,7 +21,6 @@ module.exports = class Task {
             .catch((error) => {
                 console.log(error);
             });
-        notStartedTasks.push(this);
     }
 
     static fetchAll() {
