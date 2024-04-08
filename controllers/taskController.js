@@ -21,7 +21,7 @@ exports.getYearTasks = (req, res, next) => {
     });
 };
 
-exports.saveDayTasks = (req, res, next) => {
+exports.saveTask = (req, res, next) => {
     const task = new Task(
         req.body.content,
         req.body.colour,

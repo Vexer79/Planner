@@ -19,7 +19,7 @@
     requests.createTask = function (task) {
         ajaxUtils
             .sendFetchRequest(
-                "/day",
+                "/create-task",
                 "POST",
                 {
                     "Content-type": "application/x-www-form-urlencoded",

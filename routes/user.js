@@ -10,10 +10,7 @@ router.get("/week", taskController.getWeekTasks);
 router.get("/month", taskController.getMonthTasks);
 router.get("/year", taskController.getYearTasks);
 
-router.post("/day", taskController.saveDayTasks);
-router.post("/week", (req, res) => {});
-router.post("/month", (req, res) => {});
-router.post("/year", (req, res) => {});
+router.post("/create-task", taskController.saveTask);
 
 router.get("/", viewController.getIndexPage);
 
