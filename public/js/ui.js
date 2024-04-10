@@ -34,7 +34,7 @@
             const taskColourInput = document.getElementById("task-colour");
 
             taskInput.addEventListener("keyup", function (event) {
-                if (event.key === "Enter") {
+                if (event.key === "Enter" && taskInput.value) {
                     Task.create({
                         content: taskInput.value,
                         colour: taskColourInput.value,
@@ -49,16 +49,19 @@
                 }
             });
             createTaskButton.addEventListener("click", (event) => {
-                Task.create({
-                    content: taskInput.value,
-                    colour: taskColourInput.value,
-                    startTime: "now",
-                    completeTime: "tomorrow",
-                    notifications: true,
-                    container: "not-started-tasks-container",
-                    index: document.getElementById("not-started-tasks-container").children.length,
-                    type: document.querySelector(".active").id.replace("-tasks", ""),
-                });
+                if (taskInput.value) {
+                    Task.create({
+                        content: taskInput.value,
+                        colour: taskColourInput.value,
+                        startTime: "now",
+                        completeTime: "tomorrow",
+                        notifications: true,
+                        container: "not-started-tasks-container",
+                        index: document.getElementById("not-started-tasks-container").children
+                            .length,
+                        type: document.querySelector(".active").id.replace("-tasks", ""),
+                    });
+                }
             });
             closeButton.addEventListener("click", UI.createTask.close);
         }
