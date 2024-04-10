@@ -5,6 +5,7 @@
         new Sortable(container, {
             group: "shared",
             animation: 150,
+            delay: 100,
             onEnd: requests.changeTaskOrder,
         });
     }
