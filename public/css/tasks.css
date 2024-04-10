@@ -21,14 +21,14 @@
     align-items: center;
 }
 
-.task-header>p {
+.task-header > p {
     color: white;
     font-family: "Montserrat", sans-serif;
     text-align: center;
     user-select: none;
 }
 
-.task-header>p:first-letter {
+.task-header > p:first-letter {
     text-transform: uppercase;
 }
 
