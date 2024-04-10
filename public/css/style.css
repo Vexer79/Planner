@@ -26,6 +26,7 @@ nav {
     align-items: center;
     background-color: #171717;
     width: 60px;
+    z-index: 10;
 }
 
 nav ul {
@@ -111,7 +112,7 @@ main header {
 }
 
 .open-create-task-window-container button:hover {
-    filter: invert(65%);
+    filter: invert(0);
 }
 
 @media (min-width: 426px) and (max-width: 1025px) {
@@ -138,8 +139,15 @@ main header {
     nav ul {
         flex-direction: row;
         align-items: center;
-        justify-content: space-around;
+        justify-content: space-between;
         width: 100%;
+        padding: 0 20px;
+    }
+    nav ul > li:nth-child(2) {
+        margin-right: 20px !important;
+    }
+    nav ul > li:nth-child(3) {
+        margin-left: 20px !important;
     }
 
     .menu-icon {
@@ -156,8 +164,34 @@ main header {
     }
 
     .functions-container {
-        width: 80px;
+        width: 60px;
         height: 60px;
+        position: absolute;
+        left: calc(50vw - 30px);
+        top: -50%;
+        background-position: center;
+        border-radius: 50%;
+        background-color: orange;
+    }
+
+    .menu-icon{
+        display: none;
+    }
+
+    .activeMenu {
+        display: block;
+        position: absolute;
+        background-color: orange;
+        left: calc(50vw - 30px);
+        top: -140%;
+        border-radius: 30px;
+        background-position: top 5px right 50%;
+        padding: 55px 30px;
+        filter: invert(0);
+    }
+
+    .open-create-task-window-container {
+        filter: invert(1);
     }
 }
 
@@ -170,6 +204,10 @@ main header {
     header,
     .right-container h3 {
         padding: 0;
+    }
+
+    main {
+        padding-top: 50px;
     }
 
     .content-container {

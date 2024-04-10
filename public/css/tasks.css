@@ -101,5 +101,6 @@
     .task-body {
         min-height: 55px;
         grid-template-rows: repeat(auto-fit, 50px);
+        max-height: none;
     }
 }
