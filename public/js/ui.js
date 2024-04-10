@@ -2,6 +2,7 @@
     const UI = {};
     UI.createTask = {};
     UI.settings = {};
+    UI.menu = {};
     let activeWindow = false;
 
     const wrapper = document.querySelector(".wrapper");
@@ -86,5 +87,24 @@
         wrapper.removeChild(document.querySelector(".settings-window"));
     };
 
+    UI.menu.openOnClick = function () {
+        document.getElementById("open-settings-window-button").classList.toggle("activeMenu");
+    };
+    UI.menu.openOnTouch = function () {
+        let lastTap = 0;
+        let timeout;
+        return function (event) {
+            const curTime = new Date().getTime();
+            const tapLen = curTime - lastTap;
+            if (tapLen < 500 && tapLen > 0) {
+                UI.menu.openOnClick();
+            } else {
+                timeout = setTimeout(() => {
+                    clearTimeout(timeout);
+                }, 500);
+            }
+            lastTap = curTime;
+        };
+    };
     global.UI = UI;
 })(window);
