@@ -206,10 +206,6 @@ main header {
         padding: 0;
     }
 
-    main {
-        padding-top: 50px;
-    }
-
     .content-container {
         display: block;
         height: 200%;
