@@ -11,6 +11,7 @@ router.get("/month", taskController.getMonthTasks);
 router.get("/year", taskController.getYearTasks);
 
 router.post("/create-task", taskController.saveTask);
+router.post("/change-order", taskController.changeOrder);
 
 router.get("/", viewController.getIndexPage);
 
