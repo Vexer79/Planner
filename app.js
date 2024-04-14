@@ -35,20 +35,16 @@ mongoose
                     username: "Vexer79",
                     email: "vexer@gmail.com",
                     password: "qwerty123",
-                    tasks: {
-                        notStarted: [
-                            {
-                                content: "Test",
-                                colour: "#000000",
-                                notifications: false,
-                                container: "not-started-tasks-container",
-                                index: 0,
-                                type: "day",
-                            },
-                        ],
-                        inProcess: [],
-                        completed: [],
-                    },
+                    tasks: [
+                        {
+                            content: "Test",
+                            colour: "#000000",
+                            notifications: false,
+                            container: "not-started-tasks-container",
+                            index: 0,
+                            type: "day",
+                        },
+                    ],
                 });
                 user.save();
             }
