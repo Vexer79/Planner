@@ -2,6 +2,7 @@ const path = require("path");
 require("dotenv").config();
 const mongoose = require("mongoose");
 const mongoDbUrl = process.env.MONGOLAB_URI;
+const dbName = process.env.DB_NAME;
 
 const express = require("express");
 const bodyParser = require("body-parser");
@@ -26,7 +27,7 @@ app.use(userRoutes);
 app.use("/", errorController.get404Page);
 
 mongoose
-    .connect(mongoDbUrl, { dbName: "Planner" })
+    .connect(mongoDbUrl, { dbName })
     .then((result) => {
         User.findOne().then((user) => {
             if (!user) {
