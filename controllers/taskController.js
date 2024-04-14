@@ -1,41 +1,41 @@
+const User = require("../models/user");
 const Task = require("../models/task");
 
 exports.getDayTasks = (req, res, next) => {
-    Task.fetch({ type: "day" }).then((result) => {
-        res.json(result);
+    User.findOne({ _id: "661bf8c71253e9033f232a25" }).then((result) => {
+        res.json(result.tasks.filter((task) => task.type === "day"));
     });
 };
 exports.getWeekTasks = (req, res, next) => {
-    Task.fetch({ type: "week" }).then((result) => {
-        res.json(result);
+    User.findOne({ _id: "661bf8c71253e9033f232a25" }).then((result) => {
+        res.json(result.tasks.filter((task) => task.type === "week"));
     });
 };
 exports.getMonthTasks = (req, res, next) => {
-    Task.fetch({ type: "month" }).then((result) => {
-        res.json(result);
+    User.findOne({ _id: "661bf8c71253e9033f232a25" }).then((result) => {
+        res.json(result.tasks.filter((task) => task.type === "month"));
     });
 };
 exports.getYearTasks = (req, res, next) => {
-    Task.fetch({ type: "year" }).then((result) => {
-        res.json(result);
+    User.findOne({ _id: "661bf8c71253e9033f232a25" }).then((result) => {
+        res.json(result.tasks.filter((task) => task.type === "year"));
     });
 };
 
 exports.saveTask = (req, res, next) => {
-    const task = new Task(
-        req.body.content,
-        req.body.colour,
-        req.body.startTime,
-        req.body.completeTime,
-        req.body.notifications,
-        req.body.container,
-        req.body.index,
-        req.body.type
-    );
-    task.save();
-    res.redirect("/");
+    User.findOne({ _id: "661bf8c71253e9033f232a25" }).then((user) => {
+        user.addTask({
+            content: req.body.content,
+            colour: req.body.colour,
+            startTime: req.body.startTime,
+            completeTime: req.body.completeTime,
+            notifications: req.body.notifications,
+            container: req.body.container,
+            index: Number(req.body.index),
+            type: req.body.type,
+        });
+        res.redirect("/");
+    });
 };
 
-exports.changeOrder = (req, res, next) => {
-    
-};
+exports.changeOrder = (req, res, next) => {};
