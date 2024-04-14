@@ -1,6 +1,7 @@
 const path = require("path");
-const ConnectionToMongoDB = require("./util/repository").ConnectionToMongoDB;
 require("dotenv").config();
+const mongoose = require("mongoose");
+const mongoDbUrl = process.env.MONGOLAB_URI;
 
 const express = require("express");
 const bodyParser = require("body-parser");
@@ -14,6 +15,9 @@ const ip = process.env.IP_ADRESS;
 const rootDirectory = require("./util/path");
 const userRoutes = require("./routes/user");
 
+const User = require("./models/user");
+const Task = require("./models/task");
+
 app.use(express.static(path.join(rootDirectory, "public")));
 app.use(bodyParser.urlencoded({ extended: false }));
 
@@ -21,6 +25,35 @@ app.use(userRoutes);
 
 app.use("/", errorController.get404Page);
 
-ConnectionToMongoDB(() => {
-    app.listen(port, ip);
-});
+mongoose
+    .connect(mongoDbUrl, { dbName: "Planner" })
+    .then((result) => {
+        User.findOne().then((user) => {
+            if (!user) {
+                const user = new User({
+                    username: "Vexer79",
+                    email: "vexer@gmail.com",
+                    password: "qwerty123",
+                    tasks: {
+                        notStarted: [
+                            {
+                                content: "Test",
+                                colour: "#000000",
+                                notifications: false,
+                                container: "not-started-tasks-container",
+                                index: 0,
+                                type: "day",
+                            },
+                        ],
+                        inProcess: [],
+                        completed: [],
+                    },
+                });
+                user.save();
+            }
+        });
+        app.listen(port, ip);
+    })
+    .catch((err) => {
+        console.log(err);
+    });
