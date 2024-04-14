@@ -15,10 +15,13 @@ const UserSchema = new Schema({
         type: String,
         required: true,
     },
-    tasks: {
-        notStarted: [TaskSchema.schema],
-        inProcess: [TaskSchema.schema],
-        completed: [TaskSchema.schema],
-    },
+    tasks: [TaskSchema.schema],
 });
+
+UserSchema.methods.addTask = function(task) {
+    const container = [...this.tasks];
+    container.push(task);
+    this.tasks = container;
+    this.save();
+}
 module.exports = mongoose.model("User", UserSchema);
