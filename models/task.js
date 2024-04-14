@@ -1,31 +1,39 @@
-const getDb = require("../util/repository").getDb;
+const mongoose = require("mongoose");
+const Schema = mongoose.Schema;
 
-module.exports = class Task {
-    constructor(content, colour, startTime, completeTime, notifications, container, index, type) {
-        this.content = content;
-        this.colour = colour;
-        this.startTime = startTime;
-        this.completeTime = completeTime;
-        this.notifications = notifications;
-        this.container = container;
-        this.index = index;
-        this.type = type;
-    }
+const TaskSchema = new Schema({
+    content: {
+        type: String,
+        required: true,
+    },
+    colour: {
+        type: String,
+        required: true,
+    },
+    startTime: {
+        type: String,
+        required: false,
+    },
+    completeTime: {
+        type: String,
+        required: false,
+    },
+    notifications: {
+        type: Boolean,
+        required: true,
+    },
+    container: {
+        type: String,
+        required: true,
+    },
+    index: {
+        type: Number,
+        required: true,
+    },
+    type: {
+        type: String,
+        required: true,
+    },
+});
 
-    save() {
-        const db = getDb();
-        db.collection("users")
-            .insertOne(this)
-            .then((result) => {
-                console.log(result);
-            })
-            .catch((error) => {
-                console.log(error);
-            });
-    }
-
-    static fetch(filter) {
-        const db = getDb();
-        return db.collection("users").find(filter).toArray();
-    }
-};
+module.exports = mongoose.model("Task", TaskSchema);
