@@ -14,5 +14,6 @@ router.post("/create-task", taskController.saveTask);
 router.post("/change-order", taskController.changeOrder);
 
 router.get("/", viewController.getIndexPage);
+router.get("/login", viewController.getLoginPage);
 
 module.exports = router;
