@@ -17,7 +17,6 @@ const rootDirectory = require("./util/path");
 const userRoutes = require("./routes/user");
 
 const User = require("./models/user");
-const Task = require("./models/task");
 
 app.use(express.static(path.join(rootDirectory, "public")));
 app.use(bodyParser.urlencoded({ extended: false }));
